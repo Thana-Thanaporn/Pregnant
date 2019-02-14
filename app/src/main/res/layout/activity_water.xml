@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WaterActivity"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:text="ปริมาณการดื่มน้ำของคุณ"
+                android:textColor="@color/colorFont"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@color/colorMain"
+                android:orientation="vertical"
+                android:padding="25dp">
+
+                <TextView
+                    android:id="@+id/txtWaterStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="คุณดื่มน้ำน้อยเกินไป"
+                    android:textSize="30dp" />
+
+                <TextView
+                    android:id="@+id/txtWaterCal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:text="0 มิลลิลิตร"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/image_d1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="110dp"
+                    android:layout_marginTop="28dp"
+                    android:text="125 มิลลิลิตร" />
+
+                <RelativeLayout
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginRight="20dp">
+
+                    <Button
+                        android:id="@+id/btnDisSmall"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:onClick="OnclickCompute"
+                        android:text="-"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/txtCountSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="0"
+                        android:textSize="20dp" />
+
+                    <Button
+                        android:id="@+id/btnPlusSmall"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentRight="true"
+                        android:onClick="OnclickCompute"
+                        android:text="+"
+                        android:textSize="20dp" />
+
+                </RelativeLayout>
+
+                <!--D1-->
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="70dp"
+                    android:src="@drawable/image_d2" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="110dp"
+                    android:layout_marginTop="120dp"
+                    android:text="250 มิลลิลิตร" />
+
+                <RelativeLayout
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="105dp"
+                    android:layout_marginRight="20dp">
+
+                    <Button
+                        android:id="@+id/btnDisSmall2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:onClick="OnclickCompute"
+                        android:text="-"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/txtCountSmall2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="0"
+                        android:textSize="20dp" />
+
+                    <Button
+                        android:id="@+id/btnPlusSmall2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentRight="true"
+                        android:onClick="OnclickCompute"
+                        android:text="+"
+                        android:textSize="20dp" />
+
+                </RelativeLayout>
+
+                <!--D2-->
+
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="180dp"
+                    android:src="@drawable/image_d3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="110dp"
+                    android:layout_marginTop="220dp"
+                    android:text="550 มิลลิลิตร" />
+
+                <RelativeLayout
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="200dp"
+                    android:layout_marginRight="20dp">
+
+                    <Button
+                        android:id="@+id/btnDisSmall3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:onClick="OnclickCompute"
+                        android:text="-"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/txtCountSmall3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="0"
+                        android:textSize="20dp" />
+
+                    <Button
+                        android:id="@+id/btnPlusSmall3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentRight="true"
+                        android:onClick="OnclickCompute"
+                        android:text="+"
+                        android:textSize="20dp" />
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <Button
+                android:layout_width="210dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_save_water"
+                android:onClick="OnclickSaveWater"
+                android:shadowColor="@color/colorFont"
+                android:text="บันทึก"
+                android:textColor="@color/colorBtnFeel" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

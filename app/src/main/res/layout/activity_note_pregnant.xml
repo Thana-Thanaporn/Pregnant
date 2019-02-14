@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bgnote"
+    android:id="@+id/layoutMain"
+    android:foreground="@drawable/box_radius_bg_popup"
+    tools:context=".NotePregnantActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/txtWeek"
+                android:paddingTop="15dp"
+                android:paddingRight="35dp"
+                android:paddingLeft="35dp"
+                android:paddingBottom="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/box_radius_show_week"
+                android:text="สัปดาห์ที่ 18 วันที่ 4"
+                android:textStyle="bold"
+                android:textColor="@color/colorBtnFeel"
+                android:layout_gravity="center"
+                android:translationZ="10dp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginRight="35dp"
+                android:layout_marginLeft="35dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-25dp"
+                android:background="@drawable/box_radius"
+                android:orientation="vertical">
+
+                <!--<pudpongsai.thanaporn.th.ac.su.reg.pregnant.LinedEditText-->
+                    <!--android:id="@+id/edtNote"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="120dp"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_marginRight="20dp"-->
+                    <!--android:hint="บันทึกของฉัน"-->
+                    <!--android:inputType="textMultiLine"-->
+                    <!--android:text=""/>-->
+                <EditText
+                    android:id="@+id/edtNote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="บันทึกของฉัน"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginRight="20dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="90dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/weight" />
+
+                    <EditText
+                        android:id="@+id/edtWeightNote"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-5dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="20dp"
+                        android:inputType="number"
+                        android:hint="น้ำหนัก" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="การดิ้น"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="100dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="85dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/kick" />
+
+                    <RelativeLayout
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginRight="20dp">
+
+                        <Button
+                            android:id="@+id/btnDisKick"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:onClick="OnclickCompute"
+                            android:text="-"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/txtCountKick"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="0"
+                            android:textSize="20dp" />
+
+                        <Button
+                            android:id="@+id/btnPlusKick"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentRight="true"
+                            android:onClick="OnclickCompute"
+                            android:text="+"
+                            android:textSize="20dp" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:background="@drawable/box_radius"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginLeft="35dp">
+                <TextView
+                    android:padding="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="รูปภาพของคุณ"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/imgAddNote1"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="20dp"
+                        android:src="@drawable/addimgnote"/>
+                    <ImageView
+                        android:id="@+id/imgAddNote2"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="20dp"
+                        android:src="@drawable/addimgnote"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSaveNewNote"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:background="@drawable/box_radius_btn_actcive"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="40dp"
+                android:text="บันทึก"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/colorBtnFeel"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

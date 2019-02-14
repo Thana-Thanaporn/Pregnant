@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#e1f4f9</color>
+    <color name="colorPrimaryDark">#506d85</color>
+    <color name="colorAccent">#494949</color>
+    <color name="colorMain">#d1e0e5</color>
+    <color name="colorFont">#333333</color>
+    <color name="colorBtn">#d1e0e5</color>
+    <color name="colorBtnFeel">#ffffff</color>
+    <color name="colorBtnImage">#e6e6e6</color>
+    <color name="colorPopup">#f2f2f2</color>
+    <color name="colorMenu">#ecebeb</color>
+    <color name="colorBtnOld">#cfcfcf</color>
+    <color name="colorBtnOldActive">#f9b7b7</color>
+    <color name="colorBtnWeek">#4d7793</color>
+    <color name="colorBtnWeek2">#ceebf2</color>
+
+</resources>

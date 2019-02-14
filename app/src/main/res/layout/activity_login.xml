@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bglog"
+    tools:context=".LoginActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:paddingRight="70dp"
+        android:paddingLeft="70dp"
+        android:paddingBottom="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/kanit_medium"
+            android:text="เข้าสู่ระบบ"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:fontFamily="@font/kanit_light"
+            android:layout_marginTop="15dp"
+            android:text="สร้างบัญชีผู้ใช้"
+            android:layout_alignParentRight="true"
+            android:onClick="clickRegis"/>
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="290dp"
+        android:layout_height="230dp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:outlineAmbientShadowColor="@color/colorFont"
+        android:background="@drawable/box_radius">
+
+        <EditText
+            android:id="@+id/edtUsernameLog"
+            android:layout_width="250dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kanit_light"
+            android:layout_marginTop="25dp"
+            android:hint="ชื่อผู้ใช้ :"
+            android:textSize="16dp"/>
+
+        <EditText
+            android:id="@+id/edtPasswordLog"
+            android:layout_width="250dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kanit_light"
+            android:layout_marginTop="10dp"
+            android:hint="รหัสผ่าน :"
+            android:inputType="textPassword"
+            android:textSize="16dp"/>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnLog"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:background="@drawable/box_radius_btn_actcive"
+        android:layout_marginTop="-25dp"
+        android:layout_gravity="center"
+        android:text="เข้าสู่ระบบ"
+        android:textColor="@color/colorBtnFeel"
+        android:textSize="16dp"
+        android:fontFamily="@font/kanit_medium"/>
+
+</LinearLayout>

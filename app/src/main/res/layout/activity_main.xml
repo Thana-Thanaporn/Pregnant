@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbarStyle="insideOverlay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="บันทึกคุณแม่"
+                android:textColor="@color/colorFont"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/weekAndDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="สัปดาห์ที่ 18 วันที่ 2"
+                android:textColor="@color/colorFont"
+                android:textSize="15dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <Button
+                    android:id="@+id/btnWeight"
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/colorBtn"
+                    android:drawableLeft="@drawable/btn_weight"
+                    android:onClick="OnclickWeight"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="20dp"
+                    android:text="น้ำหนัก" />
+
+
+                <Button
+                    android:id="@+id/btnWater"
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorBtn"
+                    android:drawableLeft="@drawable/btn_water"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="20dp"
+                    android:text="การดื่มน้ำ" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="ความรู้สึกวันนี้"
+                android:textColor="@color/colorFont"
+                android:textSize="15dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edtFeel"
+                    android:layout_width="265dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"/>
+
+                <ImageButton
+                    android:id="@+id/btnFeel"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/btn_feel"
+                    android:onClick="OnclickEmotion"
+                    android:background="@null"/>
+
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/edtNote"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorBtn"
+                android:hint="    บันทึกของฉัน"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:maxLines="6"
+                android:minLines="4"
+                android:scrollbars="vertical"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:text="เพิ่มรูปภาพของคุณ"
+                android:textColor="@color/colorFont"
+                android:textSize="15dp" />
+
+
+
+            <RelativeLayout
+                android:id="@+id/imgBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/btnAddImage"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:scaleType="fitXY"
+                android:background="@color/colorMenu"/>
+
+                <!--<ImageView-->
+                    <!--android:layout_width="130dp"-->
+                    <!--android:layout_height="130dp"-->
+                    <!--android:layout_marginLeft="180dp"-->
+                    <!--android:src="@drawable/rice"-->
+                    <!--android:background="@color/colorBtnImage"/>-->
+                <!--<ImageView-->
+                    <!--android:layout_width="130dp"-->
+                    <!--android:layout_height="130dp"-->
+                    <!--android:layout_marginTop="150dp"-->
+                    <!--android:src="@drawable/rice"-->
+                    <!--android:background="@color/colorBtnImage"/>-->
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btnSaveNote"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_save_water"
+                android:onClick="SavetoFirebase"
+                android:text="บันทึก" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

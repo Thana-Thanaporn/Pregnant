@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OldPregnantActivity"
+    android:background="@drawable/bginfor"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ข้อมูลส่วนตัว"
+        android:textSize="20dp"
+        android:fontFamily="@font/kanit_medium"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="25dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="น้ำหนักปัจจุบันของคุณคือ?"
+        android:fontFamily="@font/kanit_regular"
+        android:textSize="18dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="25dp"/>
+
+
+    <EditText
+        android:id="@+id/edtWeight"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="น้ำหนัก :"
+        android:textSize="14dp"
+        android:inputType="number"
+        android:fontFamily="@font/kanit_light"
+        android:layout_marginLeft="25dp"/>
+    <EditText
+        android:id="@+id/edtHigh"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="ส่วนสูง :"
+        android:textSize="14dp"
+        android:inputType="number"
+        android:fontFamily="@font/kanit_light"
+        android:layout_marginLeft="25dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="อายุครรภ์ของคุณ"
+        android:textSize="18dp"
+        android:fontFamily="@font/kanit_regular"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="25dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/edtWeek"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:hint="สัปดาห์ :"
+            android:textSize="14dp"
+            android:inputType="number"
+            android:fontFamily="@font/kanit_light"
+            android:layout_marginLeft="25dp"/>
+        <EditText
+            android:id="@+id/edtDay"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:hint="วัน :"
+            android:textSize="14dp"
+            android:inputType="number"
+            android:fontFamily="@font/kanit_light"
+            android:layout_marginLeft="25dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ช่วงอายุของคุณ"
+        android:textSize="20dp"
+        android:fontFamily="@font/kanit_regular"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="25dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnOld1"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:background="@drawable/box_radius_btn"
+            android:text="20 - 30 ปี"
+            android:fontFamily="@font/kanit_light"
+            android:layout_marginLeft="30dp"
+            android:onClick="ClickSelectRange"/>
+
+        <Button
+            android:id="@+id/btnOld2"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="25dp"
+            android:fontFamily="@font/kanit_light"
+            android:background="@drawable/box_radius_btn"
+            android:text="31 - 40 ปี"
+            android:onClick="ClickSelectRange"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btnOld3"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/kanit_light"
+        android:background="@drawable/box_radius_btn"
+        android:text="41 - 50 ปี"
+        android:onClick="ClickSelectRange"/>
+
+    <Button
+        android:id="@+id/btnOldSave"
+        android:layout_marginTop="20dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/box_radius_btn_actcive"
+        android:layout_gravity="center"
+        android:fontFamily="@font/kanit_medium"
+        android:textSize="18dp"
+        android:textColor="@color/colorBtnFeel"
+        android:text="ตกลง"/>
+
+</LinearLayout>

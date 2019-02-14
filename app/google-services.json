@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "559044750627",
+    "firebase_url": "https://pregnantmother-e8d1f.firebaseio.com",
+    "project_id": "pregnantmother-e8d1f",
+    "storage_bucket": "pregnantmother-e8d1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559044750627:android:056b44f4e1d52a37",
+        "android_client_info": {
+          "package_name": "pudpongsai.thanaporn.th.ac.su.reg.pregnant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "559044750627-nn5v9efdsk2gb6lq8q93jp6cgfkm9ka6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtWx2xOXva4xYV-7rbeHZKb49YWp7aXFg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

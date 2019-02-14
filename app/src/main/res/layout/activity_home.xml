@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bghome">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp">
+
+        //content
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="พัฒนาการทารกในครรภ์"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/kanit_medium"/>
+
+                <Button
+                    android:id="@+id/btnSos"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/box_radius_btn_actcive"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/kanit_medium"
+                    android:text="SOS"
+                    android:textSize="20dp"
+                    android:textColor="@color/colorBtnFeel"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+            <android.support.v7.widget.CardView
+                android:layout_marginTop="10dp"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                card_view:cardCornerRadius="15dp"
+
+                android:layout_height="wrap_content">
+                <com.google.android.youtube.player.YouTubePlayerView
+                    android:id="@+id/video"
+                    android:layout_width="match_parent"
+                    android:layout_height="215dp"/>
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:id="@+id/weekChild"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="สัปดาห์ที่ "
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/kanit_medium"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/longChild"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ความยาว : "
+                    android:textSize="16dp"
+                    android:fontFamily="@font/kanit_regular"/>
+
+                <TextView
+                    android:id="@+id/weightChild"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="น้ำหนัก : "
+                    android:textSize="16dp"
+                    android:fontFamily="@font/kanit_regular"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:id="@+id/detailChild"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kanit_light"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="อาหารที่จำเป็นในระยะนี้ "
+                android:textSize="16dp"
+                android:fontFamily="@font/kanit_regular"/>
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/foodChild"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"/>
+            </HorizontalScrollView>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="คำแนะนำที่เป็นประโยชน์ "
+                android:textSize="16dp"
+                android:fontFamily="@font/kanit_regular"/>
+            <LinearLayout
+                android:id="@+id/recommendChild"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ท่ากายบริหารขณะตั้งครรภ์ "
+                android:textSize="18dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/kanit_medium"/>
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+                <LinearLayout
+                    android:id="@+id/exerciseChild"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"/>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </ScrollView>
+
+    //menu
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:weightSum="5"
+        android:background="@color/colorMenu">
+        <ImageButton
+            android:id="@+id/btnHome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/menuhome"
+            android:background="@null"/>
+        <ImageButton
+            android:id="@+id/btnCalender"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/menucalen2"
+            android:background="@null"
+            android:onClick="onClickButtomMenu"/>
+        <ImageButton
+            android:id="@+id/btnMenuNote"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/menunote2"
+            android:background="@null"
+            android:onClick="onClickButtomMenu"/>
+
+        <ImageButton
+            android:id="@+id/btnCall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/menunoti2"
+            android:background="@null"
+            android:onClick="onClickButtomMenu"/>
+
+        <ImageButton
+            android:id="@+id/btnNoti"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/menuprofile2"
+            android:background="@null"/>
+    </LinearLayout>
+</RelativeLayout>

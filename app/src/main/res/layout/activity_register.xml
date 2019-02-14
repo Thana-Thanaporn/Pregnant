@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bglog"
+    android:foreground="@drawable/box_radius_bg_popup"
+    android:id="@+id/layoutMain"
+    tools:context=".RegisterActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:paddingRight="70dp"
+        android:paddingLeft="70dp"
+        android:paddingBottom="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="เข้าสู่ระบบ"
+            android:textSize="18dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/kanit_light"
+            android:onClick="clickLogin"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="สร้างบัญชีผู้ใช้"
+            android:textSize="18dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/kanit_medium"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:outlineAmbientShadowColor="@color/colorFont"
+        android:background="@drawable/box_radius">
+
+        <ImageView
+            android:id="@+id/btnprofile"
+            android:layout_width="130dp"
+            android:layout_height="90dp"
+            android:scaleType="fitXY"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:src="@drawable/img_profile" />
+
+        <EditText
+            android:id="@+id/edtName"
+            android:layout_width="250dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kanit_light"
+            android:layout_marginTop="5dp"
+            android:textSize="15dp"
+            android:hint="ชื่อ-นามสกุล :"/>
+
+        <EditText
+            android:id="@+id/edtUsername"
+            android:layout_width="250dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kanit_light"
+            android:textSize="15dp"
+            android:hint="ชื่อผู้ใช้ :"/>
+
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_width="250dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:fontFamily="@font/kanit_light"
+            android:hint="อีเมล :"/>
+
+        <EditText
+            android:id="@+id/edtPassword"
+            android:layout_width="250dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:textSize="15dp"
+            android:inputType="textPassword"
+            android:fontFamily="@font/kanit_light"
+            android:hint="รหัสผ่าน :"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnRegis"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:background="@drawable/box_radius_btn_actcive"
+        android:layout_marginTop="-35dp"
+        android:layout_gravity="center"
+        android:text="ตกลง"
+        android:textColor="@color/colorBtnFeel"
+        android:textSize="16dp"
+        android:fontFamily="@font/kanit_medium"/>
+
+</LinearLayout>
