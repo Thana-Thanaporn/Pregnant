@@ -37,6 +37,7 @@ dependencies {
     implementation 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
     implementation 'com.android.volley:volley:1.0.0'
     implementation 'com.viewpagerindicator:library:2.4.1@aar'
+    implementation 'com.jjoe64:graphview:4.2.2'
     implementation files('lilbs/YouTubeAndroidPlayerApi.jar')
 }
 

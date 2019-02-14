@@ -1,18 +1,13 @@
 package pudpongsai.thanaporn.th.ac.su.reg.pregnant.CirclePageIndicator;
 
-import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.youtube.player.YouTubePlayerView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.UserDetail;
-import pudpongsai.thanaporn.th.ac.su.reg.pregnant.HomeActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.R;
 
 public class SimpleFragment extends Fragment {

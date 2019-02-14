@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pudpongsai.thanaporn.th.ac.su.reg.pregnant.HomeMenuActivity.ExercisesActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/layoutMain"
+    tools:context=".ProfileMenuActivity.GraphActivity">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -37,39 +38,26 @@
                 android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="ท่ากายบริหารขณะตั้งครรภ์"/>
+                android:text="กราฟน้ำหนักประจำสัปดาห์"/>
 
         </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
-    <TextView
-        android:id="@+id/idEx"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ท่าที่ "
-        android:textSize="20dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/kanit_medium"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"/>
+            android:orientation="vertical">
+            <com.jjoe64.graphview.GraphView
+                android:layout_width="match_parent"
+                android:layout_height="200dip"
+                android:id="@+id/graph" />
 
-        <com.viewpagerindicator.CirclePageIndicator
-            android:id="@+id/indicator"
-            android:layout_height="40dp"
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="180dp"/>
-
-    </RelativeLayout>
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

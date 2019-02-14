@@ -15,21 +15,24 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
         <activity android:name=".WaterActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginMenuActivity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".OldPregnantActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".NoteMotherActivity" />
-        <activity android:name=".NotePregnantActivity" />
-        <activity android:name=".ExercisesActivity">
-
-        </activity>
+        <activity android:name=".LoginMenuActivity.RegisterActivity" />
+        <activity android:name=".LoginMenuActivity.OldPregnantActivity" />
+        <activity android:name=".HomeMenuActivity.HomeActivity" />
+        <activity android:name=".NoteMenuActivity.NoteMotherActivity" />
+        <activity android:name=".NoteMenuActivity.NotePregnantActivity" />
+        <activity android:name=".HomeMenuActivity.ExercisesActivity" />
+        <activity android:name=".CalendarMenuActivity.CalendarActivity" />
+        <activity android:name=".ProfileMenuActivity.ProfileActivity" />
+        <activity android:name=".NotiActivity" />
+        <activity android:name=".NoteMenuActivity.NoteActivity" />
+        <activity android:name=".ProfileMenuActivity.GraphActivity"></activity>
     </application>
 
 </manifest>

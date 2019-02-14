@@ -8,7 +8,7 @@
     android:background="@drawable/bglog"
     android:foreground="@drawable/box_radius_bg_popup"
     android:id="@+id/layoutMain"
-    tools:context=".RegisterActivity">
+    tools:context=".LoginMenuActivity.RegisterActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

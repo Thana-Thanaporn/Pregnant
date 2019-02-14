@@ -8,6 +8,6 @@ public class UserDetail {
     public static String dayPregnant = "";
     public static String oldPregnant = "";
     public static String selectExercises = "";
-
+    public static String [] selecNote = {"",""};
 
 }

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bghome">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp">
+
+        //content
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Noti"
+                android:textSize="20dp"
+                android:fontFamily="@font/kanit_medium"/>
+        </LinearLayout>
+    </ScrollView>
+
+    //menu
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:weightSum="5"
+        android:background="@color/colorMenu">
+        <ImageButton
+            android:id="@+id/btnHome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/menuhome2"
+            android:background="@null"
+            android:onClick="onClickButtomMenu"/>
+        <ImageButton
+            android:id="@+id/btnCalender"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/menucalen2"
+            android:background="@null"
+            android:onClick="onClickButtomMenu"/>
+        <ImageButton
+            android:id="@+id/btnMenuNote"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/menunote2"
+            android:background="@null"
+            android:onClick="onClickButtomMenu"/>
+
+        <ImageButton
+            android:id="@+id/btnNoti"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/menunoti"
+            android:background="@null"
+            android:onClick="onClickButtomMenu"/>
+
+        <ImageButton
+            android:id="@+id/btnProfile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/menuprofile2"
+            android:background="@null"
+            android:onClick="onClickButtomMenu"/>
+    </LinearLayout>
+</RelativeLayout>

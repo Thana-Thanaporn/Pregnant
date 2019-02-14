@@ -8,7 +8,43 @@
     android:background="@drawable/bgnote"
     android:id="@+id/layoutMain"
     android:foreground="@drawable/box_radius_bg_popup"
-    tools:context=".NotePregnantActivity">
+    tools:context=".NoteMenuActivity.NotePregnantActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="left"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:src="@drawable/back"
+                android:layout_width="wrap_content"
+                android:background="@color/colorPrimary"
+                android:layout_height="20dp"
+                android:onClick="onClickBack"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:fontFamily="@font/kanit_medium"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="เพิ่มบันทึก"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -46,16 +82,6 @@
                 android:background="@drawable/box_radius"
                 android:orientation="vertical">
 
-                <!--<pudpongsai.thanaporn.th.ac.su.reg.pregnant.LinedEditText-->
-                    <!--android:id="@+id/edtNote"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="120dp"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:layout_marginTop="10dp"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--android:hint="บันทึกของฉัน"-->
-                    <!--android:inputType="textMultiLine"-->
-                    <!--android:text=""/>-->
                 <EditText
                     android:id="@+id/edtNote"
                     android:layout_width="match_parent"

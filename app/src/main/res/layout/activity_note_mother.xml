@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutMain"
+    android:foreground="@drawable/box_radius_bg_popup"
     android:background="@drawable/bgnotemom">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -129,7 +131,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/menuhome2"
-            android:background="@null"/>
+            android:background="@null"
+            android:onClick="onClickButtomMenu"/>
         <ImageButton
             android:id="@+id/btnCalender"
             android:layout_width="match_parent"
@@ -148,7 +151,7 @@
             android:onClick="onClickButtomMenu"/>
 
         <ImageButton
-            android:id="@+id/btnCall"
+            android:id="@+id/btnNoti"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -157,11 +160,12 @@
             android:onClick="onClickButtomMenu"/>
 
         <ImageButton
-            android:id="@+id/btnNoti"
+            android:id="@+id/btnProfile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/menuprofile2"
-            android:background="@null"/>
+            android:background="@null"
+            android:onClick="onClickButtomMenu"/>
     </LinearLayout>
 </RelativeLayout>
