@@ -12,8 +12,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Calendar;
 
@@ -52,8 +65,53 @@ public class OldPregnantActivity extends AppCompatActivity {
                 saveOldPregnant();
             }
         });
+        if (UserDetail.profileMode.equals("edit")){
+            getProfileData();
+        }
 
+    }
+    public void getProfileData(){
+        String url = "https://pregnantmother-e8d1f.firebaseio.com/users/"+UserDetail.username
+                +"/profile.json";
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
+            @Override
+            public void onResponse(String s) {
+                if(!s.equals("null")) {
+                    try {
+                        JSONObject obj = new JSONObject(s);
 
+                        edtWeight.setText(obj.getString("weight").toString());
+                        edtHigh.setText(obj.getString("hieght").toString());
+                        edtWeek.setText(obj.getJSONObject("pregnant").getString("week").toString());
+                        edtDay.setText(obj.getJSONObject("pregnant").getString("day").toString());
+
+                        switch (obj.getString("oldrange").toString()){
+                            case "20 - 30 ปี" :
+                                btnActive(btnOld1);
+                                break;
+                            case "31 - 40 ปี" :
+                                btnActive(btnOld2);
+                                break;
+                            case "41 - 50 ปี" :
+                                btnActive(btnOld3);
+                                break;
+
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+        },new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                System.out.println("" + volleyError );
+            }
+        });
+
+        RequestQueue rQueue = Volley.newRequestQueue(OldPregnantActivity.this);
+        rQueue.add(request);
     }
 
     private void saveOldPregnant() {
@@ -101,6 +159,7 @@ public class OldPregnantActivity extends AppCompatActivity {
             Calendar nowDate = Calendar.getInstance();
 
             PregnantNoteReference.child("users").child(UserDetail.username).child("profile").child("weight").setValue(weight);
+            PregnantNoteReference.child("users").child(UserDetail.username).child("profile").child("hieght").setValue(high);
             PregnantNoteReference.child("users").child(UserDetail.username).child("profile").child("oldrange").setValue(oldRange);
             PregnantNoteReference.child("users").child(UserDetail.username).child("profile").child("pregnant")
                     .child("week").setValue(weekOld);

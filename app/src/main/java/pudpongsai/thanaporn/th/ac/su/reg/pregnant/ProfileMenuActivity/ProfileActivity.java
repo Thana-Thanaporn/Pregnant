@@ -6,14 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.github.siyamed.shapeimageview.RoundedImageView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,8 +26,10 @@ import org.json.JSONObject;
 import java.util.Map;
 
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.CalendarMenuActivity.CalendarActivity;
+import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.TelDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.UserDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.HomeMenuActivity.HomeActivity;
+import pudpongsai.thanaporn.th.ac.su.reg.pregnant.LoginMenuActivity.RegisterActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.NoteMenuActivity.NoteMotherActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.NotiActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.PregnantUitli;
@@ -34,13 +41,16 @@ public class ProfileActivity extends AppCompatActivity {
 
     TextView txtUsername,txtName,txtEmail,txtOldPregnant;
     RoundedImageView picProfile;
-
+    LinearLayout layoutMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_profile);
+
+        layoutMain = (LinearLayout) findViewById(R.id.layoutMain);
+        layoutMain.getForeground().setAlpha( 0);
 
         txtUsername = (TextView) findViewById(R.id.txtUsername);
         txtName = (TextView) findViewById(R.id.txtName);
@@ -63,24 +73,17 @@ public class ProfileActivity extends AppCompatActivity {
                 txtName.setText(map.get("firstname").toString());
                 txtEmail.setText(map.get("email").toString());
 
-            }
+                String imgPath = map.get("pic").toString();
+                StorageReference storageReference = FirebaseStorage.getInstance("gs://pregnantmother-e8d1f.appspot.com").getReference();
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getMessage());
-            }
-        });
+                StorageReference referenceImg1 = storageReference.child(imgPath.substring(1,imgPath.length()));
+                Glide.with(mContext)
+                        .using(new FirebaseImageLoader())
+                        .load(referenceImg1)
+                        .into(picProfile);
 
-        referenceProfile.child("pregnant").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-
-                PregnantUitli checkPregnant = new PregnantUitli();
-                checkPregnant.checkNowPregnant(
-                        snapshot.child("time").getValue().toString(),
-                        snapshot.child("week").getValue().toString(),
-                        snapshot.child("day").getValue().toString());
                 txtOldPregnant.setText(UserDetail.weekPregnant + " สัปดาห์ " + UserDetail.dayPregnant + " วัน");
+
             }
 
             @Override
@@ -88,6 +91,13 @@ public class ProfileActivity extends AppCompatActivity {
                 System.out.println("The read failed: " + databaseError.getMessage());
             }
         });
+
+
+    }
+
+    public void onClickProfileOption(View view){
+        PregnantUitli pregnantUitli = new PregnantUitli();
+        pregnantUitli.popupEditOutProfile(layoutMain, mContext);
 
     }
     public void onClickProfileMenu(View v){
@@ -97,6 +107,7 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(mContext,GraphActivity.class));
                 break;
             case R.id.btnAllNote:
+                startActivity(new Intent(mContext,TelActivity.class));
                 break;
             case R.id.btnTel:
                 break;

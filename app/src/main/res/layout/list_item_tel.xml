@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/box_radius_frame_pic">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/txtNametel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:fontFamily="@font/kanit_regular"/>
+        <TextView
+            android:id="@+id/txtTel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:fontFamily="@font/kanit_regular"/>
+
+    </LinearLayout>
+    <ImageButton
+        android:id="@+id/btnOptionTel"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/settingnote"
+        android:layout_width="wrap_content"
+        android:background="@color/colorBtnFeel"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

@@ -251,16 +251,18 @@ public class NoteMotherActivity extends AppCompatActivity {
         }
         LayoutInflater weightInflater = (LayoutInflater)
                 getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupWeightView = weightInflater.inflate(R.layout.popup_thx_note,null);
+        View popupDelView = weightInflater.inflate(R.layout.popup_thx_note,null);
 
         int widthDevice = getWindowManager().getDefaultDisplay().getWidth();
         int heightDevice = getWindowManager().getDefaultDisplay().getHeight();
         int margin = (int) (widthDevice*0.8);
         int height = (int) (heightDevice*0.35);
+        final TextView txtDetail = popupDelView.findViewById(R.id.txtDetail);
+        txtDetail.setText("ลบบันทึกเรียบร้อยแล้ว");
 
-        final PopupWindow popup = new PopupWindow(popupWeightView,margin,height,true);
+        final PopupWindow popup = new PopupWindow(popupDelView,margin,height,true);
         popup.setOutsideTouchable(true);
-        popup.showAtLocation(popupWeightView,Gravity.CENTER,0,0);
+        popup.showAtLocation(popupDelView,Gravity.CENTER,0,0);
         popup.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {

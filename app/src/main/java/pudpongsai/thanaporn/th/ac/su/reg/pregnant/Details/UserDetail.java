@@ -9,5 +9,7 @@ public class UserDetail {
     public static String oldPregnant = "";
     public static String selectExercises = "";
     public static String [] selecNote = {"",""};
+    public static String profileMode = "register";
+    public static boolean isLogout;
 
 }

@@ -49,6 +49,7 @@ public class HomeActivity extends YouTubeBaseActivity implements YouTubePlayer.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        UserDetail.isLogout = false;
         widthDevice = getWindowManager().getDefaultDisplay().getWidth();
         foodChild = (LinearLayout) findViewById(R.id.foodChild);
         recommendChild = (LinearLayout) findViewById(R.id.recommendChild);

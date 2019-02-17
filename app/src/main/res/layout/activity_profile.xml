@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/bgprofile">
+    android:id="@+id/layoutMain"
+    android:background="@drawable/bgprofile"
+    android:foreground="@drawable/box_radius_bg_popup"
+    android:orientation="vertical">
+    <!--android:foreground="@drawable/box_radius_bg_popup"-->
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -35,7 +39,8 @@
                 android:src="@drawable/settingnote"
                 android:layout_width="wrap_content"
                 android:background="@color/colorPrimary"
-                android:layout_height="30dp"/>
+                android:layout_height="30dp"
+                android:onClick="onClickProfileOption"/>
 
         </LinearLayout>
 
@@ -43,18 +48,15 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="55dp"
-        android:layout_marginBottom="60dp">
-
+        android:layout_height="match_parent">
         //content
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="15dp">
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -98,14 +100,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="ชื่อผู้ใช้ : "
-                            android:textSize="14dp"
+                            android:textSize="16dp"
                             android:fontFamily="@font/kanit_regular"/>
                         <TextView
                             android:layout_marginTop="10dp"
                             android:id="@+id/txtUsername"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="14dp"
+                            android:textSize="16dp"
                             android:fontFamily="@font/kanit_regular"/>
                     </LinearLayout>
                     <LinearLayout
@@ -117,14 +119,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="ชื่อ - นามสกุล : "
-                            android:textSize="14dp"
+                            android:textSize="16dp"
                             android:fontFamily="@font/kanit_regular"/>
                         <TextView
                             android:layout_marginTop="10dp"
                             android:id="@+id/txtName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="14dp"
+                            android:textSize="16dp"
                             android:fontFamily="@font/kanit_regular"/>
                     </LinearLayout>
                     <LinearLayout
@@ -136,14 +138,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="อีเมล : "
-                            android:textSize="14dp"
+                            android:textSize="16dp"
                             android:fontFamily="@font/kanit_regular"/>
                         <TextView
                             android:layout_marginTop="10dp"
                             android:id="@+id/txtEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="14dp"
+                            android:textSize="16dp"
                             android:fontFamily="@font/kanit_regular"/>
                     </LinearLayout>
                     <LinearLayout
@@ -155,14 +157,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="อายุครรภ์ : "
-                            android:textSize="14dp"
+                            android:textSize="16dp"
                             android:fontFamily="@font/kanit_regular"/>
                         <TextView
                             android:layout_marginTop="10dp"
                             android:id="@+id/txtOldPregnant"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="14dp"
+                            android:textSize="16dp"
                             android:fontFamily="@font/kanit_regular"/>
                     </LinearLayout>
 
@@ -173,25 +175,28 @@
                 android:id="@+id/btnGraph"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_marginRight="50dp"
+                android:paddingRight="50dp"
                 android:layout_height="60dp"
-                android:src="@drawable/rice"
+                android:src="@drawable/graphprofile"
+                android:background="@null"
                 android:onClick="onClickProfileMenu"/>
             <ImageButton
                 android:id="@+id/btnAllNote"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_marginRight="50dp"
+                android:paddingRight="50dp"
                 android:layout_height="60dp"
-                android:src="@drawable/rice"
+                android:background="@null"
+                android:src="@drawable/mobileprofile"
                 android:onClick="onClickProfileMenu"/>
             <ImageButton
                 android:id="@+id/btnTel"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_marginRight="50dp"
+                android:paddingRight="50dp"
                 android:layout_height="60dp"
-                android:src="@drawable/rice"
+                android:background="@null"
+                android:src="@drawable/totalnoteprofile"
                 android:onClick="onClickProfileMenu"/>
         </LinearLayout>
     </ScrollView>
@@ -246,4 +251,4 @@
             android:background="@null"
             android:onClick="onClickButtomMenu"/>
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

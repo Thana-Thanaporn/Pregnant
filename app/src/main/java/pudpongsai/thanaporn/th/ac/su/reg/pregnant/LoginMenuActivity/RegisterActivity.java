@@ -30,6 +30,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -45,13 +47,14 @@ import java.io.ByteArrayOutputStream;
 import java.util.UUID;
 
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.UserDetail;
+import pudpongsai.thanaporn.th.ac.su.reg.pregnant.NoteMenuActivity.NotePregnantActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.R;
 
 public class RegisterActivity extends AppCompatActivity {
     ImageView btnprofile;
     String deviceId;
     EditText edtUsername,edtEmail,edtPassword,edtName;
-    String username,email,password,name;
+    String username,email,password,name,weight;
     Button btnRegis;
     boolean checkImg;
     Bitmap bitmapImg;
@@ -92,6 +95,52 @@ public class RegisterActivity extends AppCompatActivity {
                 saveToFirebase();
             }
         });
+        weight = "";
+        if (UserDetail.profileMode.equals("edit")){
+            getProfileData();
+        }
+    }
+
+    public void getProfileData(){
+        String url = "https://pregnantmother-e8d1f.firebaseio.com/users/"+UserDetail.username
+                +"/profile.json";
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
+            @Override
+            public void onResponse(String s) {
+                if(!s.equals("null")) {
+                    try {
+                        JSONObject obj = new JSONObject(s);
+
+                        edtUsername.setText(UserDetail.username);
+                        edtUsername.setFocusable(false);
+                        edtEmail.setText(obj.getString("email").toString());
+                        edtPassword.setText(obj.getString("password").toString());
+                        edtName.setText(obj.getString("firstname").toString());
+                        String imgPath = obj.getString("pic").toString();
+                        weight = obj.getString("weight").toString();
+                        StorageReference storageReference = FirebaseStorage.getInstance("gs://pregnantmother-e8d1f.appspot.com").getReference();
+
+                            StorageReference referenceImg1 = storageReference.child(imgPath.substring(1,imgPath.length()));
+                            Glide.with(RegisterActivity.this)
+                                    .using(new FirebaseImageLoader())
+                                    .load(referenceImg1)
+                                    .into(btnprofile);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+        },new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                System.out.println("" + volleyError );
+            }
+        });
+
+        RequestQueue rQueue = Volley.newRequestQueue(RegisterActivity.this);
+        rQueue.add(request);
     }
 
     private void saveToFirebase() {
@@ -100,7 +149,9 @@ public class RegisterActivity extends AppCompatActivity {
         email = edtEmail.getText().toString();
         password = edtPassword.getText().toString();
         name = edtName.getText().toString();
-
+        if(!checkImg && !UserDetail.profileMode.equals("edit")){
+            Toast.makeText(RegisterActivity.this,"กรุณาใส่รูปภาพ",Toast.LENGTH_LONG).show();
+        }
         if(username.equals("")){
             edtUsername.setError("can't be blank");
         }
@@ -121,9 +172,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
         else if(name.equals("")){
             edtName.setError("can't be blank");
-        }
-        else if(!checkImg){
-            Toast.makeText(RegisterActivity.this,"กรุณาใส่รูปภาพ",Toast.LENGTH_LONG).show();
         }
         else {
             final ProgressDialog pd = new ProgressDialog(RegisterActivity.this);
@@ -152,7 +200,15 @@ public class RegisterActivity extends AppCompatActivity {
                                 saveImg( PregnantNoteReference);
                                 UserDetail.username = username;
 
-                            } else {
+                            }else if (UserDetail.profileMode.equals("edit")){
+                                if (checkImg){
+                                    referenceToDatabase(PregnantNoteReference);
+                                    saveImg( PregnantNoteReference);
+                                }else {
+                                    referenceToDatabase(PregnantNoteReference);
+                                }
+
+                            }else {
                                 edtUsername.setError("username already exists");
                             }
 
@@ -185,7 +241,7 @@ public class RegisterActivity extends AppCompatActivity {
         PregnantNoteReference.child("users").child(username).child("profile").child("password").setValue(password);
         PregnantNoteReference.child("users").child(username).child("profile").child("email").setValue(email);
         PregnantNoteReference.child("users").child(username).child("profile").child("firstname").setValue(name);
-        PregnantNoteReference.child("users").child(username).child("profile").child("weight").setValue("");
+        PregnantNoteReference.child("users").child(username).child("profile").child("weight").setValue(weight);
 
         rememberUser();
     }

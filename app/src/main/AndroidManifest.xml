@@ -32,7 +32,8 @@
         <activity android:name=".ProfileMenuActivity.ProfileActivity" />
         <activity android:name=".NotiActivity" />
         <activity android:name=".NoteMenuActivity.NoteActivity" />
-        <activity android:name=".ProfileMenuActivity.GraphActivity"></activity>
+        <activity android:name=".ProfileMenuActivity.GraphActivity" />
+        <activity android:name=".ProfileMenuActivity.TelActivity"></activity>
     </application>
 
 </manifest>
