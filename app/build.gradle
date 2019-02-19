@@ -39,6 +39,7 @@ dependencies {
     implementation 'com.viewpagerindicator:library:2.4.1@aar'
     implementation 'com.jjoe64:graphview:4.2.2'
     implementation files('lilbs/YouTubeAndroidPlayerApi.jar')
+    implementation files('lilbs/DynamicPDF.jar')
 }
 
 apply plugin: 'com.google.gms.google-services'

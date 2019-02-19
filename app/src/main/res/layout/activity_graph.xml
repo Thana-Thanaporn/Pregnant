@@ -53,10 +53,119 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <com.jjoe64.graphview.GraphView
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/txtweekGraph"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="สัปดาห์ที่ "
+                android:textSize="20dp"
+                android:fontFamily="@font/kanit_medium"/>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dip"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:background="@drawable/box_radius_frame_pic">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="น้ำหนักของคุณในสัปดาห์นี้"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/kanit_regular"/>
+                <TextView
+                    android:id="@+id/txtstandardWeight"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="22dp"
+                    android:fontFamily="@font/kanit_medium"/>
+
+            </LinearLayout>
+            <com.jjoe64.graphview.GraphView
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
                 android:id="@+id/graph" />
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:text="น้ำหนักวันนี้คือ"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/kanit_medium"/>
+                <TextView
+                    android:id="@+id/txtTodayWeight"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text=":  กิโลกรัม"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/kanit_regular"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:text="น้ำหนักก่อนตั้งครรภ์"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/kanit_medium"/>
+                <TextView
+                    android:id="@+id/txtBeforeWeight"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text=":  กิโลกรัม"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/kanit_regular"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:text="ส่วนสูง"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/kanit_medium"/>
+                <TextView
+                    android:id="@+id/txtHieght"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text=":  เซนติเมตร"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/kanit_regular"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:text="ดัชนีมวลกาย"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/kanit_medium"/>
+                <TextView
+                    android:id="@+id/txtBMI"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text=": "
+                    android:textSize="20dp"
+                    android:fontFamily="@font/kanit_regular"/>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

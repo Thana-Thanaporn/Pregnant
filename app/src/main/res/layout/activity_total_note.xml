@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="pudpongsai.thanaporn.th.ac.su.reg.pregnant.ProfileMenuActivity.TotalNoteActivity"
+    android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="left"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:src="@drawable/back"
+                android:layout_width="wrap_content"
+                android:background="@color/colorPrimary"
+                android:layout_height="20dp"
+                android:onClick="onClickBack"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:fontFamily="@font/kanit_medium"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="หมายเลขโทรศัพท์ฉุกเฉิน"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:orientation="vertical">
+
+        <ListView
+            android:layout_margin="10dp"
+            android:id="@+id/listTotalNote"
+            android:divider="@null"
+            android:dividerHeight="10.0sp"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"/>
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/btnPdf"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:background="@drawable/box_radius_btn_actcive"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:text="Pdf"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:onClick="printPdf"
+            android:textColor="@color/colorBtnFeel"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
+

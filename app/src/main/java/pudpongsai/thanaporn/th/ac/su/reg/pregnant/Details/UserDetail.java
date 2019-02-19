@@ -1,5 +1,6 @@
 package pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class UserDetail {
@@ -11,5 +12,6 @@ public class UserDetail {
     public static String [] selecNote = {"",""};
     public static String profileMode = "register";
     public static boolean isLogout;
+    public static ArrayList<TotalWeekDetail> totalNote;
 
 }

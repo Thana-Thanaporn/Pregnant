@@ -7,8 +7,8 @@
     android:orientation="vertical"
     android:background="@drawable/bganote"
     android:id="@+id/layoutMain"
-    android:foreground="@drawable/box_radius_bg_popup"
     tools:context=".NoteMenuActivity.NoteActivity">
+    <!--android:foreground="@drawable/box_radius_bg_popup"-->
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"

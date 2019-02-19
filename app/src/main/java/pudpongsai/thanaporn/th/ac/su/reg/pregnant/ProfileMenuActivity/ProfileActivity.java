@@ -110,6 +110,7 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(mContext,TelActivity.class));
                 break;
             case R.id.btnTel:
+                startActivity(new Intent(mContext,TotalNoteActivity.class));
                 break;
 
         }
