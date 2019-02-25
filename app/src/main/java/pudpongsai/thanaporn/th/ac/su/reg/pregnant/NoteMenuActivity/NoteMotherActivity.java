@@ -91,10 +91,10 @@ public class NoteMotherActivity extends AppCompatActivity {
                 weekAdt.notifyDataSetChanged();
 
                 if (weekS.equals(UserDetail.weekPregnant)){
-                    indexNow[1] = indexNow[0];
-                    spiSelectWeek.setSelection(indexNow[1]);
+                   // indexNow[1] = indexNow[0];
+                    spiSelectWeek.setSelection(week.size()-1);
                 }
-                indexNow[0] += 1;
+                //indexNow[0] += 1;
 
             }
 
@@ -124,7 +124,7 @@ public class NoteMotherActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
                                        long arg3) {
-                String week =spiSelectWeek.getSelectedItem().toString();
+                String week = spiSelectWeek.getSelectedItem().toString();
                 selectWeek = week.substring(11,week.length());
                 getData();
             }
@@ -165,20 +165,13 @@ public class NoteMotherActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     String imgPath = map.get("pic1").toString();
-                    String imgPath2 = map.get("pic2").toString();
                     String fav = map.get("fav").toString();
                     String weekdetail[] = {selectWeek, ds.getKey()};
                     imgPath = (imgPath.equals("") ? "" : imgPath.substring(1, imgPath.length()));
                     if (fav.equals("yes")) {
                         createImage(weekdetail, imgPath, date, favPic, "fav");
-                        if (!imgPath2.equals("")) {
-                            createImage(weekdetail, imgPath2.substring(1, imgPath2.length()), date, favPic, "fav");
-                        }
                     } else {
                         createImage(weekdetail, imgPath, date, boxPic, "box");
-                        if (!imgPath2.equals("")) {
-                            createImage(weekdetail, imgPath2.substring(1, imgPath2.length()), date, boxPic, "box");
-                        }
                     }
                 }
             }
@@ -205,10 +198,10 @@ public class NoteMotherActivity extends AppCompatActivity {
 
         int widthDevice = getWindowManager().getDefaultDisplay().getWidth();
         int heightDevice = getWindowManager().getDefaultDisplay().getHeight();
-        int margin = (int) (widthDevice*0.8);
+        int wieght = (int) (widthDevice*0.8);
         int height = (int) (heightDevice*0.18);
 
-        final PopupWindow popupEditNote = new PopupWindow(popupEditNoteView,margin,height,true);
+        final PopupWindow popupEditNote = new PopupWindow(popupEditNoteView,wieght,height,true);
         popupEditNote.setOutsideTouchable(true);
         popupEditNote.showAtLocation(popupEditNoteView,Gravity.CENTER,0,0);
 

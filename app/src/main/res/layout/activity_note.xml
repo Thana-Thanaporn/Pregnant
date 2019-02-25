@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/bganote"
+    android:foreground="@drawable/box_radius_bg_popup"
     android:id="@+id/layoutMain"
     tools:context=".NoteMenuActivity.NoteActivity">
     <!--android:foreground="@drawable/box_radius_bg_popup"-->

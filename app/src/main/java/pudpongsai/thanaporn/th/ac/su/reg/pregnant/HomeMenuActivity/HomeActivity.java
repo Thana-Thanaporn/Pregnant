@@ -1,6 +1,7 @@
 package pudpongsai.thanaporn.th.ac.su.reg.pregnant.HomeMenuActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v4.content.res.ResourcesCompat;
@@ -37,7 +38,7 @@ import pudpongsai.thanaporn.th.ac.su.reg.pregnant.R;
 
 public class HomeActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
-    Activity mContext = HomeActivity.this;
+    Context mContext = HomeActivity.this;
 
     public static final String API_KEY = "AIzaSyCdDs-rDdEhiiCYIhpnpRSxPOHS53Zh_P0";
     String VIDEO_ID = "";
@@ -326,45 +327,6 @@ public class HomeActivity extends YouTubeBaseActivity implements YouTubePlayer.O
         public void onVideoStarted() {
         }
     };
-
-//    public void getProfile(){
-//
-//        String url = "https://pregnantmother-e8d1f.firebaseio.com/users/"+UserDetail.username+".json";
-//
-//        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
-//            @Override
-//            public void onResponse(String s) {
-//
-//                    try {
-//                        JSONObject obj = new JSONObject(s);
-//                        String picUrl = obj.getJSONObject("profile").getString("pic");
-//
-//                        StorageReference storageReference = FirebaseStorage.getInstance("gs://pregnantmother-e8d1f.appspot.com").getReference()
-//                                .child(picUrl.substring(ss,picUrl.length()));
-//
-//
-//                        Glide.with(HomeActivity.this)
-//                                .using(new FirebaseImageLoader())
-//                                .load(storageReference)
-//                                .into(imgUserMother);
-//
-//                        txtUsernameMother.setText(UserDetail.username + "\n" + obj.getJSONObject("profile").getString("email"));
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//            }
-//
-//        },new Response.ErrorListener(){
-//            @Override
-//            public void onErrorResponse(VolleyError volleyError) {
-//                System.out.println("" + volleyError );
-//            }
-//        });
-//
-//        RequestQueue rQueue = Volley.newRequestQueue(HomeActivity.this);
-//        rQueue.add(request);
-//    }
 
 
     public void onClickButtomMenu(View v){

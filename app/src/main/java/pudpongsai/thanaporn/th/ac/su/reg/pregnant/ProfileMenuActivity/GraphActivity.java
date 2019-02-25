@@ -135,11 +135,11 @@ public class GraphActivity extends AppCompatActivity {
 
     public String calWeightWeekPregnant(double []  weight){
         int week = Integer.parseInt(UserDetail.weekPregnant);
-        if (week > 3 && week < 14){
+        if (week > 3 && week < 14){ //4-13
             return  calWeightRangePregnant(weight[0],week);
-        }else if (week >= 14 && week < 29){
+        }else if (week >= 14 && week < 29){//14-28
             return calWeightRangePregnant(weight[1],week);
-        }else {
+        }else { //>29
             return calWeightRangePregnant(weight[2],week);
         }
     }

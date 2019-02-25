@@ -127,9 +127,9 @@ public class TotalNoteActivity extends AppCompatActivity {
                 54.0f);
 
         // Create a Label to add to the page
-        String strText = arrTotalNote.get(0).getTotalPdf();
-//        String strText = "Hello World...\nFrom DynamicPDF Generator "
-//                + "for Java\nDynamicPDF.com";
+//        String strText = arrTotalNote.get(0).getTotalPdf();
+        String strText = "Hello World...\nFrom DynamicPDF Generator "
+                + "for Java\nDynamicPDF.com";
         Label objLabel = new Label(strText, 0, 0, 504, 100,
                 Font.getHelvetica(), 18, TextAlign.CENTER);
 
