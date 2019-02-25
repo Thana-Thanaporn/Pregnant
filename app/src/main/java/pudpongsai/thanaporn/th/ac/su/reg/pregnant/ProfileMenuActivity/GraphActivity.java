@@ -15,6 +15,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
@@ -22,11 +27,16 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.PointsGraphSeries;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Map;
 
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.UserDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.LoginMenuActivity.LoginActivity;
@@ -59,6 +69,25 @@ public class GraphActivity extends AppCompatActivity {
         txtweekGraph.setText("สัปดาห์ที่ "+UserDetail.weekPregnant);
 
 
+//        DatabaseReference reference1 = FirebaseDatabase.getInstance()
+//                .getReferenceFromUrl("https://pregnantmother-e8d1f.firebaseio.com/users/"+UserDetail.username);
+//
+//        reference1.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot snapshot) {
+//
+//
+//                for(DataSnapshot ds : snapshot.getChildren()) {
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                System.out.println("The read failed: " + databaseError.getMessage());
+//            }
+//        });
+
 
         String url = "https://pregnantmother-e8d1f.firebaseio.com/users/"+UserDetail.username+".json";
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
@@ -67,14 +96,14 @@ public class GraphActivity extends AppCompatActivity {
                 if(!s.equals("null")) {
                     try {
                         JSONObject obj = new JSONObject(s);
-                        JSONObject weightObj = obj.getJSONObject("weight").getJSONObject(UserDetail.weekPregnant);
+                        JSONArray weightObj = obj.getJSONObject("weight").getJSONArray(UserDetail.weekPregnant);
                         showGraphData(weightObj);
 
                         weight = obj.getJSONObject("profile").getString("weight");
                         hieght = obj.getJSONObject("profile").getString("hieght");
-                        myWeight = Double.valueOf(weightObj.getString(UserDetail.dayPregnant));
+                        myWeight = Double.valueOf(weightObj.get(Integer.parseInt(UserDetail.dayPregnant)).toString());
                         oldWeight = Double.valueOf(obj.getJSONObject("profile").getString("weight"));
-                        txtTodayWeight.setText(": "+weightObj.getString(UserDetail.dayPregnant)+" กิโลกรัม");
+                        txtTodayWeight.setText(": "+myWeight+" กิโลกรัม");
                         txtBeforeWeight.setText(": "+weight+" กิโลกรัม");
                         txtHieght.setText(": "+hieght+" เซนติเมตร");
                         txtBMI.setText(calculatorBMI(Integer.parseInt(weight),Integer.parseInt(hieght)));
@@ -157,13 +186,14 @@ public class GraphActivity extends AppCompatActivity {
     }
 
 
-    private void showGraphData(JSONObject obj) {
+    private void showGraphData(JSONArray obj) {
         String[] days = new String[]{"1","2","3","4","5","6","7"};
 
         for (int i = 0 ; i < days.length ; i++){
             try {
-                if (obj.has(days[i])){
-                    dataPoints[i] = new DataPoint(i, Double.parseDouble(obj.getString(days[i])));
+                Log.d("check json array", obj.getString(i));
+                if (obj.get(i).equals(days[i])){
+                    dataPoints[i] = new DataPoint(i, Double.parseDouble(obj.getString(i)));
                 }else {
                     dataPoints[i] = new DataPoint(i, 0);
                 }
