@@ -33,7 +33,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:fontFamily="@font/kanit_medium"
+                android:fontFamily="@fonts/kanit_medium"
                 android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

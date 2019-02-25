@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:foreground="@drawable/box_radius_bg_popup"
+    android:id="@+id/layoutMain"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginRight="20dp"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:src="@drawable/back"
+                android:layout_width="wrap_content"
+                android:background="@color/colorPrimary"
+                android:layout_height="25dp"
+                android:onClick="onClickBack"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:fontFamily="@font/kanit_medium"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="เพิ่มในปฏิทิน"/>
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="55dp">
+
+        //content
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
+            <TextView
+                android:id="@+id/idEx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="รายละเอียดที่ต้องการบันทึกในปฎิทิน"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/kanit_medium"/>
+
+            <EditText
+                android:id="@+id/edtTopic"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kanit_light"
+                android:layout_marginTop="5dp"
+                android:textSize="15dp"
+                android:hint="หัวข้อ :"/>
+            <EditText
+                android:id="@+id/edtPlace"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kanit_light"
+                android:layout_marginTop="5dp"
+                android:textSize="15dp"
+                android:hint="สถานที่ :"/>
+            <EditText
+                android:id="@+id/edtDetail"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kanit_light"
+                android:layout_marginTop="5dp"
+                android:textSize="15dp"
+                android:hint="รายละเอียด :"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="วัน - เวลา"
+                android:textSize="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/kanit_regular"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/timePicker"
+                    android:src="@drawable/menucalen"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:layout_height="wrap_content"
+                    android:onClick="setDate"/>
+                <TextView
+                    android:id="@+id/txtDate"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/kanit_regular"/>
+
+            </LinearLayout>
+            <Button
+                android:id="@+id/btnRegis"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:background="@drawable/box_radius_btn_actcive"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:text="เพิ่ม"
+                android:onClick="saveDate"
+                android:textColor="@color/colorBtnFeel"
+                android:textSize="16dp"
+                android:fontFamily="@font/kanit_medium"/>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

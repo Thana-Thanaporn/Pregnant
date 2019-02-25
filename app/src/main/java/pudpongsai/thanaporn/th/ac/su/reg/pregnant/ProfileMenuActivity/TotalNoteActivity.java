@@ -2,6 +2,8 @@ package pudpongsai.thanaporn.th.ac.su.reg.pregnant.ProfileMenuActivity;
 
 
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,17 +18,22 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.cete.dynamicpdf.Document;
-import com.cete.dynamicpdf.Font;
-import com.cete.dynamicpdf.Page;
-import com.cete.dynamicpdf.PageOrientation;
-import com.cete.dynamicpdf.PageSize;
-import com.cete.dynamicpdf.TextAlign;
-import com.cete.dynamicpdf.pageelements.Label;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -112,43 +119,51 @@ public class TotalNoteActivity extends AppCompatActivity {
     }
 
     public void printPdf(View view){
-        String FILE = Environment.getExternalStorageDirectory()
+        String dest = Environment.getExternalStorageDirectory()
                 + "/HelloWorld.pdf";
-        Log.d("file",FILE);
-
-        // Create a document and set it's properties
-        Document objDocument = new Document();
-        objDocument.setCreator("DynamicPDFHelloWorld.java");
-        objDocument.setAuthor("Your Name");
-        objDocument.setTitle("Hello World");
-
-        // Create a page to add to the document
-        Page objPage = new Page(PageSize.LETTER, PageOrientation.PORTRAIT,
-                54.0f);
-
-        // Create a Label to add to the page
-        String strText = arrTotalNote.get(0).getTotalPdf();
-//        String strText = "Hello World...\nFrom DynamicPDF Generator "
-//                + "for Java\nDynamicPDF.com";
-        Label objLabel = new Label(strText, 0, 0, 504, 100,
-                Font.getHelvetica(), 18, TextAlign.CENTER);
-
-        // Add label to page
-        objPage.getElements().add(objLabel);
-
-        // Add page to document
-        objDocument.getPages().add(objPage);
-
-        try {
-            // Outputs the document to file
-            objDocument.draw(FILE);
-            Toast.makeText(this, "File has been written to :" + FILE,
-                    Toast.LENGTH_LONG).show();
-        } catch (Exception e) {
-            Toast.makeText(this,
-                    "Error, unable to write to file\n" + e.getMessage(),
-                    Toast.LENGTH_LONG).show();
+        if (new File(dest).exists()) {
+            new File(dest).delete();
         }
+        String fontFilePath = Uri.parse("android.resource://"+getPackageName()+"/font/kanit_regular.ttf").toString();
+
+
+        if (new File(fontFilePath).exists()) {
+            Log.d("ffff","ffffff");
+        }
+        try {
+            Document document = new Document();
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(dest));
+            writer.setPdfVersion(PdfWriter.VERSION_1_7);
+
+
+//            FontFactory.register(System.getProperty("file.separator")+"resources"+System.getProperty("file.separator")+"font"+System.getProperty("file.separator")+"kanit_regular.‌​ttf", "my_bold_font");
+//            Font myBoldFont = FontFactory.getFont("my_bold_font");
+
+//            String fontName = "kanit_regular.ttf";
+//            InputStream is = mcontext.getAssets().open(fontName);
+//            int size = is.available();
+//            byte[] buffer = new byte[size];
+//            int a = is.read(buffer);
+//            BaseFont customFont = BaseFont.createFont(fontName, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, true, buffer, buffer);
+//            Font banglaFont = new Font(customFont, 12);
+
+
+//            BaseFont bf = BaseFont.createFont("C:\\Users\\youn2\\Downloads\\THSarabunNew.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+//            Font font = new Font(bf, 12);
+//
+//            document.open();
+//            document.add(new Paragraph("ดดดดดดด",font));
+//
+//            document.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
     public void onClickBack(View v){
         onBackPressed();

@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:text="พัฒนาการทารกในครรภ์"
                     android:textSize="20dp"
-                    android:fontFamily="@font/kanit_medium"/>
+                    android:fontFamily="@fonts/kanit_medium"/>
 
                 <Button
                     android:id="@+id/btnSos"
@@ -36,7 +36,7 @@
                     android:layout_height="40dp"
                     android:background="@drawable/box_radius_btn_actcive"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/kanit_medium"
+                    android:fontFamily="@fonts/kanit_medium"
                     android:text="SOS"
                     android:textSize="20dp"
                     android:textColor="@color/colorBtnFeel"
@@ -63,7 +63,7 @@
                 android:text="สัปดาห์ที่ "
                 android:textSize="20dp"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/kanit_medium"/>
+                android:fontFamily="@fonts/kanit_medium"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"

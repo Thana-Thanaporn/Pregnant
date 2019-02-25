@@ -34,7 +34,9 @@
         <activity android:name=".NoteMenuActivity.NoteActivity" />
         <activity android:name=".ProfileMenuActivity.GraphActivity" />
         <activity android:name=".ProfileMenuActivity.TelActivity" />
-        <activity android:name=".ProfileMenuActivity.TotalNoteActivity"></activity>
+        <activity android:name=".ProfileMenuActivity.TotalNoteActivity" />
+        <activity android:name=".CalendarMenuActivity.AddDateActivity" />
+        <activity android:name=".CalendarMenuActivity.EventActivity"></activity>
     </application>
 
 </manifest>
