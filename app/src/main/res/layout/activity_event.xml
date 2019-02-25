@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:foreground="@drawable/box_radius_bg_popup"
+    android:id="@+id/layoutMain"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginRight="20dp"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:src="@drawable/back"
+                android:layout_width="wrap_content"
+                android:background="@color/colorPrimary"
+                android:layout_height="25dp"
+                android:onClick="onClickBack"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:fontFamily="@fonts/kanit_medium"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="ที่บันทึกไว้"/>
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+
+        //content
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+
+            <TextView
+                android:id="@+id/txtDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textSize="20dp"
+                android:fontFamily="@fonts/kanit_medium"/>
+
+            <ListView
+                android:id="@+id/listEvent"
+                android:divider="@null"
+                android:dividerHeight="10.0sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+</LinearLayout>

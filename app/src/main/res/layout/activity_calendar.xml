@@ -3,12 +3,51 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/bghome">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="20dp"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:src="@drawable/plus"
+                android:layout_width="25dp"
+                android:background="@color/colorPrimary"
+                android:layout_height="25dp"
+                android:onClick="onClickNewDate"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:fontFamily="@fonts/kanit_medium"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="ปฏิทินของคุณ"/>
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="55dp"
         android:layout_marginBottom="60dp">
 
         //content
@@ -18,12 +57,72 @@
             android:orientation="vertical"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp">
+                <ImageButton
+                    android:id="@+id/btnPreMonth"
+                    android:src="@drawable/back"
+                    android:layout_width="wrap_content"
+                    android:background="@null"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:onClick="onClickMonth"/>
+
+                <TextView
+                    android:id="@+id/txtMonth"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Month"
+                    android:textSize="20dp"
+                    android:fontFamily="@fonts/kanit_medium"/>
+                <ImageButton
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/btnNextMonth"
+                    android:rotation="180"
+                    android:src="@drawable/back"
+                    android:layout_width="wrap_content"
+                    android:background="@null"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:onClick="onClickMonth"/>
+            </RelativeLayout>
+
+
+            <com.github.sundeepk.compactcalendarview.CompactCalendarView
+                android:id="@+id/compactcalendar_view"
+                android:layout_width="fill_parent"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:layout_height="250dp"
+                app:compactCalendarTargetHeight="250dp"
+                app:compactCalendarTextSize="14sp"
+                app:compactCalendarBackgroundColor="#fff"
+                app:compactCalendarTextColor="#000"
+                app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorBtnOldActive"
+                app:compactCalendarCurrentDayBackgroundColor="@color/colorBtnOld"
+                app:compactCalendarMultiEventIndicatorColor="@color/colorBtnOld"
+                />
             <TextView
+                android:id="@+id/weekAndDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CalenderActivity"
+                android:text="ที่บันทึกไว้ "
                 android:textSize="20dp"
-                android:fontFamily="@font/kanit_medium"/>
+                android:fontFamily="@fonts/kanit_medium"/>
+
+            <ListView
+                android:id="@+id/listEvent"
+                android:divider="@null"
+                android:dividerHeight="10.0sp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"/>
+
         </LinearLayout>
     </ScrollView>
 

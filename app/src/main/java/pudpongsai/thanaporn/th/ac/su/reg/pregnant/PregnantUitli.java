@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -29,6 +31,10 @@ import org.json.JSONObject;
 
 import java.util.Calendar;
 
+import pudpongsai.thanaporn.th.ac.su.reg.pregnant.CalendarMenuActivity.AddDateActivity;
+import pudpongsai.thanaporn.th.ac.su.reg.pregnant.CalendarMenuActivity.CalendarActivity;
+import pudpongsai.thanaporn.th.ac.su.reg.pregnant.CalendarMenuActivity.EventActivity;
+import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.EventDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.TelDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.UserDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.LoginMenuActivity.LoginActivity;
@@ -171,7 +177,8 @@ public class PregnantUitli {
                 saveTelReference.child(telDetail.getNameTel()).child("tel").setValue(null);
                 popupEditTel.dismiss();
                 layout.getForeground().setAlpha( 0);
-                popupDelTel(layout,context);
+                String word = "ลบเบอร์โทรศัพท์เรียบร้อยแล้ว";
+                popupDel(layout,context,word);
 
 
             }
@@ -185,7 +192,7 @@ public class PregnantUitli {
 
     }
 
-    public void popupDelTel(final LinearLayout layout, final Context context){
+    public static void popupDel(final LinearLayout layout, final Context context, String word){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             layout.getForeground().setAlpha( 220);
         }
@@ -198,7 +205,7 @@ public class PregnantUitli {
         int margin = (int) (widthDevice*0.8);
         int height = (int) (heightDevice*0.35);
         final TextView txtDetail = popupDelView.findViewById(R.id.txtDetail);
-        txtDetail.setText("ลบเบอร์โทรศัพท์เรียบร้อยแล้ว");
+        txtDetail.setText(word);
 
         final PopupWindow popup = new PopupWindow(popupDelView,margin,height,true);
         popup.setOutsideTouchable(true);
@@ -215,6 +222,99 @@ public class PregnantUitli {
                 layout.getForeground().setAlpha( 0);
                 popup.dismiss();
 
+            }
+        }, 3 *1000);
+    }
+    public static void popupEditDelEvent(final LinearLayout layout, final Context context , final EventDetail eventDetail,final long day){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            layout.getForeground().setAlpha( 220);
+        }
+
+        LayoutInflater EditNoteInflater = (LayoutInflater)
+                context.getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupEditNoteView = EditNoteInflater.inflate(R.layout.popup_edit_del_note,null);
+
+        final Button btnEdit = popupEditNoteView.findViewById(R.id.btnNoteEdit);
+        final Button btnDel = popupEditNoteView.findViewById(R.id.btnNoteDel);
+
+        int widthDevice = ((Activity)context).getWindowManager().getDefaultDisplay().getWidth();
+        int heightDevice = ((Activity)context).getWindowManager().getDefaultDisplay().getHeight();
+        int margin = (int) (widthDevice*0.8);
+        int height = (int) (heightDevice*0.18);
+
+        final PopupWindow popupEditDel = new PopupWindow(popupEditNoteView,margin,height,true);
+        popupEditDel.setOutsideTouchable(true);
+        popupEditDel.showAtLocation(popupEditNoteView,Gravity.CENTER,0,0);
+
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnEdit.setBackgroundResource(R.drawable.box_radius_btn_actcive);
+                popupEditDel.dismiss();
+                Intent mIntent = new Intent(context, AddDateActivity.class);
+                Bundle mBundle = new Bundle();
+                mBundle.putLong("Date", day);
+                mBundle.putLong("Time", eventDetail.getDate());
+                mIntent.putExtras(mBundle);
+                context.startActivity(mIntent);
+
+            }
+        });
+        btnDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnDel.setBackgroundResource(R.drawable.box_radius_btn_actcive);
+                DatabaseReference saveTelReference = FirebaseDatabase.getInstance()
+                        .getReferenceFromUrl("https://pregnantmother-e8d1f.firebaseio.com/users/"
+                                + UserDetail.username+"/calendars/"+day);
+                saveTelReference.child(String.valueOf(eventDetail.getDate())).setValue(null);
+                popupEditDel.dismiss();
+                layout.getForeground().setAlpha( 0);
+                String word = "ลบบันทึกเรียบร้อยแล้ว";
+                popupDel(layout,context,word);
+
+
+            }
+        });
+        popupEditDel.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                layout.getForeground().setAlpha( 0);
+            }
+        });
+
+    }
+    public static void popupSaveDate(final RelativeLayout layout, final Context context){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            layout.getForeground().setAlpha( 220);
+        }
+        LayoutInflater weightInflater = (LayoutInflater)
+                context.getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupDelView = weightInflater.inflate(R.layout.popup_thx_note,null);
+
+        int widthDevice = ((Activity)context).getWindowManager().getDefaultDisplay().getWidth();
+        int heightDevice = ((Activity)context).getWindowManager().getDefaultDisplay().getHeight();
+        int margin = (int) (widthDevice*0.8);
+        int height = (int) (heightDevice*0.35);
+        final TextView txtDetail = popupDelView.findViewById(R.id.txtDetail);
+        txtDetail.setText("เพิ่มลงในปฎิทินเรียบร้อยแล้ว");
+
+        final PopupWindow popup = new PopupWindow(popupDelView,margin,height,true);
+        popup.setOutsideTouchable(true);
+        popup.showAtLocation(popupDelView,Gravity.CENTER,0,0);
+        popup.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                layout.getForeground().setAlpha( 0);
+                context.startActivity(new Intent(context, CalendarActivity.class));
+            }
+        });
+
+        new Handler().postDelayed(new Runnable(){
+            public void run() {
+                layout.getForeground().setAlpha( 0);
+                popup.dismiss();
+                context.startActivity(new Intent(context, CalendarActivity.class));
             }
         }, 3 *1000);
     }
