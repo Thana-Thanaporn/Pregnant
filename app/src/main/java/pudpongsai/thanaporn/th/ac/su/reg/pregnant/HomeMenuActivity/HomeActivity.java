@@ -1,9 +1,12 @@
 package pudpongsai.thanaporn.th.ac.su.reg.pregnant.HomeMenuActivity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -33,12 +36,14 @@ import pudpongsai.thanaporn.th.ac.su.reg.pregnant.CalendarMenuActivity.CalendarA
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.UserDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.NoteMenuActivity.NoteMotherActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.NotiActivity;
+import pudpongsai.thanaporn.th.ac.su.reg.pregnant.PregnantUitli;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.ProfileMenuActivity.ProfileActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.R;
 
 public class HomeActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
     Context mContext = HomeActivity.this;
+    RelativeLayout layoutMain;
 
     public static final String API_KEY = "AIzaSyCdDs-rDdEhiiCYIhpnpRSxPOHS53Zh_P0";
     String VIDEO_ID = "";
@@ -60,8 +65,16 @@ public class HomeActivity extends YouTubeBaseActivity implements YouTubePlayer.O
         longChild = (TextView) findViewById(R.id.longChild);
         weightChild = (TextView) findViewById(R.id.weightChild);
         detailChild = (TextView) findViewById(R.id.detailChild);
+        layoutMain = (RelativeLayout) findViewById(R.id.layoutMain);
+        layoutMain.getForeground().setAlpha( 0);
 
         weekChild.setText("สัปดาห์ที่ " + UserDetail.weekPregnant);
+
+
+        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) mContext,
+                    new String[]{android.Manifest.permission.CALL_PHONE},1);
+        }
 
 
         DatabaseReference  referenceWeek = FirebaseDatabase.getInstance()
@@ -348,5 +361,8 @@ public class HomeActivity extends YouTubeBaseActivity implements YouTubePlayer.O
                 startActivity(new Intent(mContext,ProfileActivity.class));
                 break;
         }
+    }
+    public void onClickSos(View v){
+        PregnantUitli.popupSOS(layoutMain,HomeActivity.this);
     }
 }

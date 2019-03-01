@@ -1,18 +1,26 @@
 package pudpongsai.thanaporn.th.ac.su.reg.pregnant;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -23,14 +31,20 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
+import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Adapters.SosAdapter;
+import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Adapters.TelAdapter;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.CalendarMenuActivity.AddDateActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.CalendarMenuActivity.CalendarActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.CalendarMenuActivity.EventActivity;
@@ -72,7 +86,7 @@ public class PregnantUitli {
         UserDetail.weekPregnant = ""+week;
         UserDetail.dayPregnant = ""+day;
 //        UserDetail.dayPregnant = ""+4;
-//        UserDetail.weekPregnant = ""+5;
+//        UserDetail.weekPregnant = ""+6;
 
     }
 
@@ -151,7 +165,7 @@ public class PregnantUitli {
 
         int widthDevice = ((Activity)context).getWindowManager().getDefaultDisplay().getWidth();
         int heightDevice = ((Activity)context).getWindowManager().getDefaultDisplay().getHeight();
-        int margin = (int) (widthDevice*0.8);
+        int margin = (int) (widthDevice*0.95);
         int height = (int) (heightDevice*0.18);
 
         final PopupWindow popupEditTel = new PopupWindow(popupEditNoteView,margin,height,true);
@@ -239,7 +253,7 @@ public class PregnantUitli {
 
         int widthDevice = ((Activity)context).getWindowManager().getDefaultDisplay().getWidth();
         int heightDevice = ((Activity)context).getWindowManager().getDefaultDisplay().getHeight();
-        int margin = (int) (widthDevice*0.8);
+        int margin = (int) (widthDevice*0.95);
         int height = (int) (heightDevice*0.18);
 
         final PopupWindow popupEditDel = new PopupWindow(popupEditNoteView,margin,height,true);
@@ -333,7 +347,7 @@ public class PregnantUitli {
         btnNoteDel.setText("ออกจากระบบ");
         int widthDevice = ((Activity)context).getWindowManager().getDefaultDisplay().getWidth();
         int heightDevice = ((Activity)context).getWindowManager().getDefaultDisplay().getHeight();
-        int margin = (int) (widthDevice*0.8);
+        int margin = (int) (widthDevice*0.95);
         int height = (int) (heightDevice*0.18);
 
         final PopupWindow popupEditTel = new PopupWindow(popupEditNoteView,margin,height,true);
@@ -360,6 +374,79 @@ public class PregnantUitli {
             }
         });
         popupEditTel.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                layout.getForeground().setAlpha( 0);
+            }
+        });
+
+    }
+
+    public static void popupSOS(final RelativeLayout layout, final Context context){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            layout.getForeground().setAlpha( 220);
+        }
+
+        final ArrayList<TelDetail> arrTelDetail = new ArrayList<>();
+
+        LayoutInflater EditNoteInflater = (LayoutInflater)
+                context.getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View popupView = EditNoteInflater.inflate(R.layout.popup_sos,null);
+
+        final ListView listView = popupView.findViewById(R.id.listTel);
+
+        int widthDevice = ((Activity)context).getWindowManager().getDefaultDisplay().getWidth();
+        int width = (int) (widthDevice*0.95);
+
+        final PopupWindow popupSOS = new PopupWindow(popupView,width, ViewGroup.LayoutParams.WRAP_CONTENT,true);
+        popupSOS.setOutsideTouchable(true);
+        popupSOS.showAtLocation(popupView,Gravity.CENTER,0,0);
+
+        DatabaseReference TelReference = FirebaseDatabase.getInstance()
+                .getReferenceFromUrl("https://pregnantmother-e8d1f.firebaseio.com/users/"
+                        + UserDetail.username + "/tels");
+
+        TelReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                arrTelDetail.clear();
+
+                for(DataSnapshot ds : snapshot.getChildren()) {
+                    arrTelDetail.add(new TelDetail(
+                            ds.getKey(),
+                            ds.child("tel").getValue().toString())
+                    );
+                }
+
+                SosAdapter sosAdapter = new SosAdapter(arrTelDetail,context);
+                listView.setAdapter(sosAdapter);
+                sosAdapter.notifyDataSetChanged();
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @SuppressLint("MissingPermission")
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        popupSOS.dismiss();
+                        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + arrTelDetail.get(position).getTel()));
+                        context.startActivity(intent);
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getMessage());
+            }
+        });
+
+
+
+
+
+
+
+        popupSOS.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
                 layout.getForeground().setAlpha( 0);

@@ -15,6 +15,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
@@ -22,11 +27,16 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.PointsGraphSeries;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Map;
 
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.UserDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.LoginMenuActivity.LoginActivity;
@@ -35,7 +45,6 @@ import pudpongsai.thanaporn.th.ac.su.reg.pregnant.R;
 
 public class GraphActivity extends AppCompatActivity {
     Context mcontext = GraphActivity.this;
-    DataPoint[] dataPoints = new DataPoint[7];
     GraphView graph;
 
     TextView txtweekGraph,txtstandardWeight,txtTodayWeight,txtBeforeWeight,txtHieght,txtBMI;
@@ -59,43 +68,66 @@ public class GraphActivity extends AppCompatActivity {
         txtweekGraph.setText("สัปดาห์ที่ "+UserDetail.weekPregnant);
 
 
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReferenceFromUrl("https://pregnantmother-e8d1f.firebaseio.com/users/"+UserDetail.username);
 
-        String url = "https://pregnantmother-e8d1f.firebaseio.com/users/"+UserDetail.username+".json";
-        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onResponse(String s) {
-                if(!s.equals("null")) {
-                    try {
-                        JSONObject obj = new JSONObject(s);
-                        JSONObject weightObj = obj.getJSONObject("weight").getJSONObject(UserDetail.weekPregnant);
-                        showGraphData(weightObj);
+            public void onDataChange(DataSnapshot snapshot) {
+                graph.removeAllSeries();
 
-                        weight = obj.getJSONObject("profile").getString("weight");
-                        hieght = obj.getJSONObject("profile").getString("hieght");
-                        myWeight = Double.valueOf(weightObj.getString(UserDetail.dayPregnant));
-                        oldWeight = Double.valueOf(obj.getJSONObject("profile").getString("weight"));
-                        txtTodayWeight.setText(": "+weightObj.getString(UserDetail.dayPregnant)+" กิโลกรัม");
-                        txtBeforeWeight.setText(": "+weight+" กิโลกรัม");
-                        txtHieght.setText(": "+hieght+" เซนติเมตร");
-                        txtBMI.setText(calculatorBMI(Integer.parseInt(weight),Integer.parseInt(hieght)));
+                DataSnapshot dsProfile = snapshot.child("profile");
 
+                weight = dsProfile.child("weight").getValue().toString();
+                hieght = dsProfile.child("hieght").getValue().toString();
+                oldWeight = Double.valueOf(weight);
+                txtBeforeWeight.setText(": "+weight+" กิโลกรัม");
+                txtHieght.setText(": "+hieght+" เซนติเมตร");
 
+                DataSnapshot dsWeight = snapshot.child("weight");
+                if (dsWeight.hasChild(UserDetail.weekPregnant)){
+                    getWeight(dsWeight.child(UserDetail.weekPregnant));
+                }else {
+                    String weekLast = "";
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    for(DataSnapshot ds : dsWeight.getChildren()) {
+                        weekLast = ds.getKey();
                     }
+                    getWeight(dsWeight.child(weekLast));
                 }
+
+
             }
 
-        },new Response.ErrorListener(){
             @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                System.out.println("" + volleyError );
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getMessage());
             }
         });
 
-        RequestQueue rQueue = Volley.newRequestQueue(mcontext);
-        rQueue.add(request);
+    }
+    public void getWeight(DataSnapshot dataSnapshot){
+
+        DataPoint[] dataPoints = new DataPoint[7];
+        Double lastweight = 0.0;
+
+        for(DataSnapshot ds : dataSnapshot.getChildren()) {
+            int index = Integer.parseInt(ds.getKey());
+            Double data = Double.parseDouble(ds.getValue().toString());
+
+            dataPoints[index] = new DataPoint(index,data);
+            lastweight = Double.valueOf(index);
+        }
+
+        for (int i = 0 ; i < dataPoints.length ; i++){
+            if (dataPoints[i] == null){
+                dataPoints[i] = new DataPoint(i, 0);
+            }
+        }
+        showGraphData(dataPoints);
+        myWeight = lastweight;
+        txtTodayWeight.setText(": "+myWeight+" กิโลกรัม");
+        txtBMI.setText(calculatorBMI(Integer.parseInt(weight),Integer.parseInt(hieght)));
 
     }
 
@@ -157,20 +189,8 @@ public class GraphActivity extends AppCompatActivity {
     }
 
 
-    private void showGraphData(JSONObject obj) {
-        String[] days = new String[]{"1","2","3","4","5","6","7"};
+    private void showGraphData(DataPoint [] dataPoints) {
 
-        for (int i = 0 ; i < days.length ; i++){
-            try {
-                if (obj.has(days[i])){
-                    dataPoints[i] = new DataPoint(i, Double.parseDouble(obj.getString(days[i])));
-                }else {
-                    dataPoints[i] = new DataPoint(i, 0);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
 
         LineGraphSeries<DataPoint> lineGraphSeries = new LineGraphSeries<>(dataPoints);
         PointsGraphSeries<DataPoint> pointsGraphSeries = new PointsGraphSeries<>(dataPoints);
