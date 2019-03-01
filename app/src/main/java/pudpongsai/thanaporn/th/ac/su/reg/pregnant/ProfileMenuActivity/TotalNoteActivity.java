@@ -10,7 +10,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +29,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
@@ -45,9 +50,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.concurrent.ExecutionException;
 
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.TelDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.TotalWeekDetail;
@@ -67,6 +74,42 @@ public class TotalNoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_total_note);
         listTotalNote = (ListView) findViewById(R.id.listTotalNote);
         pictest = (ImageView) findViewById(R.id.pictest);
+
+
+        Glide.with(this)
+                .load("https://i.imgur.com/lU6i0qJ.jpg")
+                .asBitmap()
+                .into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(final Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                        Bitmap bimtapImage=resource;
+                        pictest.setImageBitmap(bimtapImage);
+                    }
+                    @Override
+                    public void onLoadFailed(Exception e, Drawable errorDrawable) {
+                        super.onLoadFailed(e, errorDrawable);
+                    }
+                });
+//        runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Bitmap theBitmap = Glide.
+//                            with(TotalNoteActivity.this).
+//                            load("https://i.imgur.com/lU6i0qJ.jpg").
+//                            asBitmap().
+//                            into(100, 100). // Width and height
+//                            get();
+//                    pictest.setImageBitmap(theBitmap);
+//                } catch (ExecutionException e) {
+//                    e.printStackTrace();
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+
+
 
 //        String url = "https://pregnantmother-e8d1f.firebaseio.com/users/"+UserDetail.username+"/notes.json";
 //        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
@@ -99,6 +142,7 @@ public class TotalNoteActivity extends AppCompatActivity {
 //
 //        RequestQueue rQueue = Volley.newRequestQueue(mcontext);
 //        rQueue.add(request);
+
     }
 
     private void totalWeek(JSONObject object ,String week) {
