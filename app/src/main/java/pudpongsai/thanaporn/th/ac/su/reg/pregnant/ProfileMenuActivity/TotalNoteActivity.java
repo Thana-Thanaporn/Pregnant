@@ -68,69 +68,8 @@ public class TotalNoteActivity extends AppCompatActivity {
         listTotalNote = (ListView) findViewById(R.id.listTotalNote);
         pictest = (ImageView) findViewById(R.id.pictest);
 
-//        String url = "https://pregnantmother-e8d1f.firebaseio.com/users/"+UserDetail.username+"/notes.json";
-//        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
-//            @Override
-//            public void onResponse(String s) {
-//                if(!s.equals("null")) {
-//                    try {
-//                        JSONObject obj = new JSONObject(s);
-//                        Iterator i = obj.keys();
-//                        String key = "";
-//
-//                        while(i.hasNext()){
-//                            key = i.next().toString();
-//                            totalWeek(obj.getJSONObject(key),key);
-//                        }
-//
-//
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//
-//        },new Response.ErrorListener(){
-//            @Override
-//            public void onErrorResponse(VolleyError volleyError) {
-//                System.out.println("" + volleyError );
-//            }
-//        });
-//
-//        RequestQueue rQueue = Volley.newRequestQueue(mcontext);
-//        rQueue.add(request);
     }
 
-    private void totalWeek(JSONObject object ,String week) {
-
-        try {
-            Iterator i = object.keys();
-            String key = "";
-
-            int countNote = 0 ;
-            String textPdf ="สัปดาห์ที่ " + key;
-
-            while(i.hasNext()){
-                key = i.next().toString();
-                JSONObject objDay = object.getJSONObject(key);
-                textPdf += "\n"+" วันที่ : " + key
-                        + "\n บันทึก : " + objDay.getString("note")
-                        + "\n น้ำหนัก : " + objDay.getString("weight");
-//                        + "\n การดิ้น : " + objDay.getString("kick")
-//                        + "\n วันที่บันทึก : " + objDay.getString("date")
-//                        + "\n\n";
-
-
-                countNote += 1;
-            }
-
-            arrTotalNote.add(new TotalWeekDetail(countNote,key,textPdf));
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     public void printPdf(View view){
         String dest = Environment.getExternalStorageDirectory()
@@ -139,7 +78,6 @@ public class TotalNoteActivity extends AppCompatActivity {
             new File(dest).delete();
         }
 
-        String text = "งงงงงงงงงงงงงงงงกกกดำทเทกาสเ่าส";
         String[] showtext = new String[4];
         int[] texthight = new int[4];
         showtext[0] = "สัปดาห์ที่ 4 วันที่ 2";
@@ -163,7 +101,7 @@ public class TotalNoteActivity extends AppCompatActivity {
         int height =0;
         for (int i =0 ; i< showtext.length ; i++){
             Rect bounds = new Rect();
-            paint1.getTextBounds(text, 0, text.length(), bounds);
+            paint1.getTextBounds(showtext[i], 0, showtext[i].length(), bounds);
             if (i == 0){
                 texthight[0] = (int) (baseline);
             }else {
@@ -173,7 +111,6 @@ public class TotalNoteActivity extends AppCompatActivity {
             height = texthight[i];
         }
 
-//        int height = (int) (baseline + paint.descent() + 0.5f);
         Bitmap image = Bitmap.createBitmap(500, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(image);
         canvas.drawText(showtext[0], 0, texthight[0], paint);
@@ -192,12 +129,6 @@ public class TotalNoteActivity extends AppCompatActivity {
             Image maimg = Image.getInstance(stream3.toByteArray());
             document.open();
             document.add(maimg);
-//            Image image2 = Image.getInstance( new URL("https://i.imgur.com/lU6i0qJ.jpg"));
-//            document.add(image2);
-
-//            URL newurl = new URL("https://i.imgur.com/lU6i0qJ.jpg");
-//            Bitmap mIcon_val = BitmapFactory.decodeStream(newurl.openConnection() .getInputStream());
-//            pictest.setImageBitmap(mIcon_val);
 
             document.close();
         } catch (FileNotFoundException e) {

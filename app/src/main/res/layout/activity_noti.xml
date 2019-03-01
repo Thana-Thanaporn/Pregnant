@@ -3,13 +3,30 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/bghome">
-
-    <ScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="60dp">
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:fontFamily="@fonts/kanit_medium"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="การแจ้งเตือน"/>
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.Toolbar>
 
         //content
         <LinearLayout
@@ -17,15 +34,17 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Noti"
-                android:textSize="20dp"
-                android:fontFamily="@font/kanit_medium"/>
+            android:layout_marginTop="55dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="55dp"
+            android:background="@drawable/bgnoti">
+            <ListView
+                android:id="@+id/listNoti"
+                android:divider="@null"
+                android:dividerHeight="10.0sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
         </LinearLayout>
-    </ScrollView>
 
     //menu
     <LinearLayout
@@ -58,15 +77,31 @@
             android:src="@drawable/menunote2"
             android:background="@null"
             android:onClick="onClickButtomMenu"/>
-
-        <ImageButton
-            android:id="@+id/btnNoti"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/menunoti"
-            android:background="@null"
-            android:onClick="onClickButtomMenu"/>
+            android:layout_weight="1">
+            <ImageButton
+                android:id="@+id/btnNoti"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/menunoti"
+                android:background="@null"
+                android:onClick="onClickButtomMenu"/>
+            <TextView
+                android:id="@+id/notiCount"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="14dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:background="@drawable/circle"
+                android:gravity="center"
+                android:textColor="@color/colorAccent"
+                android:includeFontPadding="false" />
+
+        </RelativeLayout>
+
 
         <ImageButton
             android:id="@+id/btnProfile"

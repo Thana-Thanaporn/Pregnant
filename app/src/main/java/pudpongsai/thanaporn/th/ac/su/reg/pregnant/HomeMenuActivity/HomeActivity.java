@@ -30,9 +30,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.Calendar;
 import java.util.Map;
 
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.CalendarMenuActivity.CalendarActivity;
+import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.EventDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.UserDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.NoteMenuActivity.NoteMotherActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.NotiActivity;
@@ -51,11 +53,15 @@ public class HomeActivity extends YouTubeBaseActivity implements YouTubePlayer.O
     TextView weekChild,longChild,weightChild,detailChild;
     LinearLayout foodChild,recommendChild,exerciseChild;
 
+    TextView notiCount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         UserDetail.isLogout = false;
+
+        notiCount = (TextView) findViewById(R.id.notiCount);
+        notiCount.setVisibility(View.GONE);
         widthDevice = getWindowManager().getDefaultDisplay().getWidth();
         foodChild = (LinearLayout) findViewById(R.id.foodChild);
         recommendChild = (LinearLayout) findViewById(R.id.recommendChild);
@@ -76,7 +82,7 @@ public class HomeActivity extends YouTubeBaseActivity implements YouTubePlayer.O
                     new String[]{android.Manifest.permission.CALL_PHONE},1);
         }
 
-
+        PregnantUitli.checkNoti(notiCount,null,mContext);
         DatabaseReference  referenceWeek = FirebaseDatabase.getInstance()
                 .getReferenceFromUrl("https://pregnantmother-e8d1f.firebaseio.com/pregnantDetails/"
                         +UserDetail.oldPregnant+"/"+UserDetail.weekPregnant);

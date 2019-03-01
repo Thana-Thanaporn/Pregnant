@@ -150,14 +150,30 @@
             android:background="@null"
             android:onClick="onClickButtomMenu"/>
 
-        <ImageButton
-            android:id="@+id/btnNoti"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/menunoti2"
-            android:background="@null"
-            android:onClick="onClickButtomMenu"/>
+            android:layout_weight="1">
+            <ImageButton
+                android:id="@+id/btnNoti"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/menunoti2"
+                android:background="@null"
+                android:onClick="onClickButtomMenu"/>
+            <TextView
+                android:id="@+id/notiCount"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="14dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:background="@drawable/circle"
+                android:gravity="center"
+                android:textColor="@color/colorAccent"
+                android:includeFontPadding="false" />
+
+        </RelativeLayout>
 
         <ImageButton
             android:id="@+id/btnProfile"

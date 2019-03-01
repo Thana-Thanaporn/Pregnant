@@ -38,6 +38,7 @@ import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.UserDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.HomeMenuActivity.HomeActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.NoteMenuActivity.NoteMotherActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.NotiActivity;
+import pudpongsai.thanaporn.th.ac.su.reg.pregnant.PregnantUitli;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.ProfileMenuActivity.ProfileActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.R;
 
@@ -53,12 +54,17 @@ public class CalendarActivity extends AppCompatActivity {
 
     TextView txtMonth;
     CompactCalendarView compactCalendarView;
+    TextView notiCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_calendar);
+
+        notiCount = (TextView) findViewById(R.id.notiCount);
+        notiCount.setVisibility(View.GONE);
+        PregnantUitli.checkNoti(notiCount,null , mContext);
 
         myCalendar.set(Calendar.HOUR_OF_DAY,0);
         myCalendar.set(Calendar.MINUTE,0);
@@ -88,6 +94,8 @@ public class CalendarActivity extends AppCompatActivity {
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
                 Log.d("calendar", "Month was scrolled to: " + firstDayOfNewMonth);
+                myCalendar.setTimeInMillis(firstDayOfNewMonth.getTime());
+                txtMonth.setText(format.format(myCalendar.getTime())+ " , " + (myCalendar.get(Calendar.YEAR)+543));
             }
         });
 

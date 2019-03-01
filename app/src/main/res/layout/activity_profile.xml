@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layoutMain"
-    android:background="@drawable/bgprofile"
     android:foreground="@drawable/box_radius_bg_popup"
+    android:background="@drawable/bgprofile"
     android:orientation="vertical">
-    <!--android:foreground="@drawable/box_radius_bg_popup"-->
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -48,7 +47,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="55dp"
+        android:layout_marginTop="55dp">
         //content
         <LinearLayout
             android:layout_width="match_parent"
@@ -175,7 +176,7 @@
                 android:id="@+id/btnGraph"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:paddingRight="50dp"
+                android:paddingRight="20dp"
                 android:layout_height="60dp"
                 android:src="@drawable/graphprofile"
                 android:background="@null"
@@ -184,7 +185,7 @@
                 android:id="@+id/btnAllNote"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:paddingRight="50dp"
+                android:paddingRight="20dp"
                 android:layout_height="60dp"
                 android:background="@null"
                 android:src="@drawable/mobileprofile"
@@ -193,7 +194,7 @@
                 android:id="@+id/btnTel"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:paddingRight="50dp"
+                android:paddingRight="20dp"
                 android:layout_height="60dp"
                 android:background="@null"
                 android:src="@drawable/totalnoteprofile"
@@ -233,14 +234,30 @@
             android:background="@null"
             android:onClick="onClickButtomMenu"/>
 
-        <ImageButton
-            android:id="@+id/btnNoti"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/menunoti2"
-            android:background="@null"
-            android:onClick="onClickButtomMenu"/>
+            android:layout_weight="1">
+            <ImageButton
+                android:id="@+id/btnNoti"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/menunoti2"
+                android:background="@null"
+                android:onClick="onClickButtomMenu"/>
+            <TextView
+                android:id="@+id/notiCount"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="14dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:background="@drawable/circle"
+                android:gravity="center"
+                android:textColor="@color/colorAccent"
+                android:includeFontPadding="false" />
+
+        </RelativeLayout>
 
         <ImageButton
             android:id="@+id/btnProfile"
@@ -251,4 +268,4 @@
             android:background="@null"
             android:onClick="onClickButtomMenu"/>
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>
