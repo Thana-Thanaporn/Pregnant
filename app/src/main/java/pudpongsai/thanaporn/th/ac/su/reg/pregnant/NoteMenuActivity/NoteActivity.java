@@ -129,7 +129,7 @@ public class NoteActivity extends AppCompatActivity {
 
         int widthDevice = getWindowManager().getDefaultDisplay().getWidth();
         int heightDevice = getWindowManager().getDefaultDisplay().getHeight();
-        int margin = (int) (widthDevice*0.8);
+        int margin = (int) (widthDevice*0.95);
         int height = (int) (heightDevice*0.18);
 
         final PopupWindow popupEditNote = new PopupWindow(popupEditNoteView,margin,height,true);

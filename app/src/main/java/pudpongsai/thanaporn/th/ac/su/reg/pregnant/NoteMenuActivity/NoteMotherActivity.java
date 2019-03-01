@@ -198,7 +198,7 @@ public class NoteMotherActivity extends AppCompatActivity {
 
         int widthDevice = getWindowManager().getDefaultDisplay().getWidth();
         int heightDevice = getWindowManager().getDefaultDisplay().getHeight();
-        int wieght = (int) (widthDevice*0.8);
+        int wieght = (int) (widthDevice*0.95);
         int height = (int) (heightDevice*0.18);
 
         final PopupWindow popupEditNote = new PopupWindow(popupEditNoteView,wieght,height,true);

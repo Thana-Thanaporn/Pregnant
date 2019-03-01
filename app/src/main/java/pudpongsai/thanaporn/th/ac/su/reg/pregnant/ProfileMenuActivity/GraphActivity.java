@@ -45,7 +45,6 @@ import pudpongsai.thanaporn.th.ac.su.reg.pregnant.R;
 
 public class GraphActivity extends AppCompatActivity {
     Context mcontext = GraphActivity.this;
-    DataPoint[] dataPoints = new DataPoint[7];
     GraphView graph;
 
     TextView txtweekGraph,txtstandardWeight,txtTodayWeight,txtBeforeWeight,txtHieght,txtBMI;
@@ -69,62 +68,66 @@ public class GraphActivity extends AppCompatActivity {
         txtweekGraph.setText("สัปดาห์ที่ "+UserDetail.weekPregnant);
 
 
-//        DatabaseReference reference1 = FirebaseDatabase.getInstance()
-//                .getReferenceFromUrl("https://pregnantmother-e8d1f.firebaseio.com/users/"+UserDetail.username);
-//
-//        reference1.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot snapshot) {
-//
-//
-//                for(DataSnapshot ds : snapshot.getChildren()) {
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                System.out.println("The read failed: " + databaseError.getMessage());
-//            }
-//        });
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReferenceFromUrl("https://pregnantmother-e8d1f.firebaseio.com/users/"+UserDetail.username);
 
-
-        String url = "https://pregnantmother-e8d1f.firebaseio.com/users/"+UserDetail.username+".json";
-        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onResponse(String s) {
-                if(!s.equals("null")) {
-                    try {
-                        JSONObject obj = new JSONObject(s);
-                        JSONArray weightObj = obj.getJSONObject("weight").getJSONArray(UserDetail.weekPregnant);
-                        showGraphData(weightObj);
+            public void onDataChange(DataSnapshot snapshot) {
+                graph.removeAllSeries();
 
-                        weight = obj.getJSONObject("profile").getString("weight");
-                        hieght = obj.getJSONObject("profile").getString("hieght");
-                        myWeight = Double.valueOf(weightObj.get(Integer.parseInt(UserDetail.dayPregnant)).toString());
-                        oldWeight = Double.valueOf(obj.getJSONObject("profile").getString("weight"));
-                        txtTodayWeight.setText(": "+myWeight+" กิโลกรัม");
-                        txtBeforeWeight.setText(": "+weight+" กิโลกรัม");
-                        txtHieght.setText(": "+hieght+" เซนติเมตร");
-                        txtBMI.setText(calculatorBMI(Integer.parseInt(weight),Integer.parseInt(hieght)));
+                DataSnapshot dsProfile = snapshot.child("profile");
 
+                weight = dsProfile.child("weight").getValue().toString();
+                hieght = dsProfile.child("hieght").getValue().toString();
+                oldWeight = Double.valueOf(weight);
+                txtBeforeWeight.setText(": "+weight+" กิโลกรัม");
+                txtHieght.setText(": "+hieght+" เซนติเมตร");
 
+                DataSnapshot dsWeight = snapshot.child("weight");
+                if (dsWeight.hasChild(UserDetail.weekPregnant)){
+                    getWeight(dsWeight.child(UserDetail.weekPregnant));
+                }else {
+                    String weekLast = "";
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    for(DataSnapshot ds : dsWeight.getChildren()) {
+                        weekLast = ds.getKey();
                     }
+                    getWeight(dsWeight.child(weekLast));
                 }
+
+
             }
 
-        },new Response.ErrorListener(){
             @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                System.out.println("" + volleyError );
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getMessage());
             }
         });
 
-        RequestQueue rQueue = Volley.newRequestQueue(mcontext);
-        rQueue.add(request);
+    }
+    public void getWeight(DataSnapshot dataSnapshot){
+
+        DataPoint[] dataPoints = new DataPoint[7];
+        Double lastweight = 0.0;
+
+        for(DataSnapshot ds : dataSnapshot.getChildren()) {
+            int index = Integer.parseInt(ds.getKey());
+            Double data = Double.parseDouble(ds.getValue().toString());
+
+            dataPoints[index] = new DataPoint(index,data);
+            lastweight = Double.valueOf(index);
+        }
+
+        for (int i = 0 ; i < dataPoints.length ; i++){
+            if (dataPoints[i] == null){
+                dataPoints[i] = new DataPoint(i, 0);
+            }
+        }
+        showGraphData(dataPoints);
+        myWeight = lastweight;
+        txtTodayWeight.setText(": "+myWeight+" กิโลกรัม");
+        txtBMI.setText(calculatorBMI(Integer.parseInt(weight),Integer.parseInt(hieght)));
 
     }
 
@@ -186,21 +189,8 @@ public class GraphActivity extends AppCompatActivity {
     }
 
 
-    private void showGraphData(JSONArray obj) {
-        String[] days = new String[]{"1","2","3","4","5","6","7"};
+    private void showGraphData(DataPoint [] dataPoints) {
 
-        for (int i = 0 ; i < days.length ; i++){
-            try {
-                Log.d("check json array", obj.getString(i));
-                if (obj.get(i).equals(days[i])){
-                    dataPoints[i] = new DataPoint(i, Double.parseDouble(obj.getString(i)));
-                }else {
-                    dataPoints[i] = new DataPoint(i, 0);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
 
         LineGraphSeries<DataPoint> lineGraphSeries = new LineGraphSeries<>(dataPoints);
         PointsGraphSeries<DataPoint> pointsGraphSeries = new PointsGraphSeries<>(dataPoints);

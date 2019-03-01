@@ -3,6 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:foreground="@drawable/box_radius_bg_popup"
+    android:id="@+id/layoutMain"
     android:background="@drawable/bghome">
 
     <ScrollView
@@ -31,15 +33,16 @@
 
                 <Button
                     android:id="@+id/btnSos"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
+                    android:layout_width="90dp"
+                    android:layout_height="30dp"
                     android:background="@drawable/box_radius_btn_actcive"
                     android:layout_gravity="center"
                     android:fontFamily="@fonts/kanit_medium"
                     android:text="SOS"
                     android:textSize="20dp"
                     android:textColor="@color/colorBtnFeel"
-                    android:layout_alignParentRight="true"/>
+                    android:layout_alignParentRight="true"
+                    android:onClick="onClickSos"/>
             </RelativeLayout>
             <android.support.v7.widget.CardView
                 android:layout_marginTop="10dp"
