@@ -42,7 +42,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Map;
 
+import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Adapters.DateAdapter;
+import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Adapters.NotiAdapter;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Adapters.SosAdapter;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Adapters.TelAdapter;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.CalendarMenuActivity.AddDateActivity;
@@ -53,14 +56,58 @@ import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.TelDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.UserDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.LoginMenuActivity.LoginActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.LoginMenuActivity.RegisterActivity;
-import pudpongsai.thanaporn.th.ac.su.reg.pregnant.NoteMenuActivity.NoteActivity;
-import pudpongsai.thanaporn.th.ac.su.reg.pregnant.NoteMenuActivity.NotePregnantActivity;
-import pudpongsai.thanaporn.th.ac.su.reg.pregnant.ProfileMenuActivity.GraphActivity;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 
 public class PregnantUitli {
+
+    public static  void  checkNoti(final TextView textView , final ListView listView , final Context context){
+        Calendar now  = Calendar.getInstance();
+        now.set(Calendar.HOUR_OF_DAY,0);
+        now.set(Calendar.MINUTE,0);
+        now.set(Calendar.SECOND,0);
+        now.set(Calendar.MILLISECOND,0);
+
+        DatabaseReference  referenceNoti = FirebaseDatabase.getInstance()
+                .getReferenceFromUrl("https://pregnantmother-e8d1f.firebaseio.com/users/"
+                        + UserDetail.username+"/calendars/"+now.getTimeInMillis());
+
+        referenceNoti.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                UserDetail.arrNoti.clear();
+
+                for(DataSnapshot dsDay : snapshot.getChildren()) {
+                    Map<String,String> map = (Map) dsDay.getValue();
+                    UserDetail.arrNoti.add(
+                            new EventDetail(map.get("topic"),
+                                    map.get("place"),
+                                    map.get("detail"),
+                                    Long.parseLong(dsDay.getKey())));
+                }
+
+                if (UserDetail.arrNoti.size() != 0){
+                    textView.setVisibility(View.VISIBLE);
+                    textView.setText("" + UserDetail.arrNoti.size());
+                }
+
+
+                if (listView != null){
+                    NotiAdapter notiAdapter = new NotiAdapter(UserDetail.arrNoti,context);
+                    listView.setAdapter(notiAdapter);
+                    notiAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getMessage());
+            }
+        });
+
+
+    }
 
     public  void checkNowPregnant(String date ,String weekStr , String dayStr){
         long week = Long.parseLong(weekStr);
@@ -86,7 +133,7 @@ public class PregnantUitli {
         UserDetail.weekPregnant = ""+week;
         UserDetail.dayPregnant = ""+day;
 //        UserDetail.dayPregnant = ""+4;
-//        UserDetail.weekPregnant = ""+6;
+//        UserDetail.weekPregnant = ""+12;
 
     }
 
@@ -253,10 +300,10 @@ public class PregnantUitli {
 
         int widthDevice = ((Activity)context).getWindowManager().getDefaultDisplay().getWidth();
         int heightDevice = ((Activity)context).getWindowManager().getDefaultDisplay().getHeight();
-        int margin = (int) (widthDevice*0.95);
+        int wight = (int) (widthDevice*0.95);
         int height = (int) (heightDevice*0.18);
 
-        final PopupWindow popupEditDel = new PopupWindow(popupEditNoteView,margin,height,true);
+        final PopupWindow popupEditDel = new PopupWindow(popupEditNoteView,wight,height,true);
         popupEditDel.setOutsideTouchable(true);
         popupEditDel.showAtLocation(popupEditNoteView,Gravity.CENTER,0,0);
 
@@ -333,7 +380,7 @@ public class PregnantUitli {
         }, 3 *1000);
     }
 
-    public void popupEditOutProfile(final LinearLayout layout, final Context context ){
+    public void popupEditOutProfile(final RelativeLayout layout, final Context context ){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             layout.getForeground().setAlpha( 220);
         }

@@ -10,6 +10,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +47,7 @@ import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.UserDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Adapters.weekAdapter;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.HomeMenuActivity.HomeActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.NotiActivity;
+import pudpongsai.thanaporn.th.ac.su.reg.pregnant.PregnantUitli;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.ProfileMenuActivity.ProfileActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.R;
 
@@ -61,6 +63,7 @@ public class NoteMotherActivity extends AppCompatActivity {
     int indexNow[] ={0,0};
 
     RelativeLayout layoutMain;
+    TextView notiCount;
 
     ArrayList<String> week = new ArrayList<String>();
 
@@ -69,6 +72,11 @@ public class NoteMotherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_note_mother);
+
+        notiCount = (TextView) findViewById(R.id.notiCount);
+        notiCount.setVisibility(View.GONE);
+        PregnantUitli.checkNoti(notiCount,null,mContext);
+
         widthDevice = getWindowManager().getDefaultDisplay().getWidth();
         countPicBox = 0;
         countPicFav =0 ;
@@ -81,41 +89,30 @@ public class NoteMotherActivity extends AppCompatActivity {
 
         DatabaseReference  referenceWeek = FirebaseDatabase.getInstance()
                 .getReferenceFromUrl("https://pregnantmother-e8d1f.firebaseio.com/users/"+UserDetail.username+"/notes");
-        referenceWeek.addChildEventListener(new ChildEventListener() {
+
+        referenceWeek.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String weekS = dataSnapshot.getKey();
-                week.add("สัปดาห์ที่ "+weekS);
+            public void onDataChange(DataSnapshot snapshot) {
+
+                for(DataSnapshot ds : snapshot.getChildren()) {
+                    week.add("สัปดาห์ที่ "+ ds.getKey());
+                }
                 weekAdapter weekAdt = new weekAdapter(NoteMotherActivity.this, week);
                 spiSelectWeek.setAdapter(weekAdt);
                 weekAdt.notifyDataSetChanged();
+                int index = week.indexOf("สัปดาห์ที่ "+ UserDetail.weekPregnant);
 
-                if (weekS.equals(UserDetail.weekPregnant)){
-                   // indexNow[1] = indexNow[0];
+                if (index == -1){
                     spiSelectWeek.setSelection(week.size()-1);
+                }else {
+                    spiSelectWeek.setSelection(index);
                 }
-                //indexNow[0] += 1;
 
             }
 
             @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getMessage());
             }
         });
 

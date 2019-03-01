@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -41,7 +42,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     TextView txtUsername,txtName,txtEmail,txtOldPregnant;
     RoundedImageView picProfile;
-    LinearLayout layoutMain;
+    RelativeLayout layoutMain;
+    TextView notiCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,11 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_profile);
 
-        layoutMain = (LinearLayout) findViewById(R.id.layoutMain);
+        notiCount = (TextView) findViewById(R.id.notiCount);
+        notiCount.setVisibility(View.GONE);
+        PregnantUitli.checkNoti(notiCount,null , mContext);
+
+        layoutMain = (RelativeLayout) findViewById(R.id.layoutMain);
         layoutMain.getForeground().setAlpha( 0);
 
         txtUsername = (TextView) findViewById(R.id.txtUsername);

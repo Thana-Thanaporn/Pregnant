@@ -27,24 +27,12 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.PointsGraphSeries;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Map;
 
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.UserDetail;
-import pudpongsai.thanaporn.th.ac.su.reg.pregnant.LoginMenuActivity.LoginActivity;
-import pudpongsai.thanaporn.th.ac.su.reg.pregnant.PregnantUitli;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.R;
 
 public class GraphActivity extends AppCompatActivity {
-    Context mcontext = GraphActivity.this;
     GraphView graph;
 
     TextView txtweekGraph,txtstandardWeight,txtTodayWeight,txtBeforeWeight,txtHieght,txtBMI;
@@ -109,14 +97,13 @@ public class GraphActivity extends AppCompatActivity {
     public void getWeight(DataSnapshot dataSnapshot){
 
         DataPoint[] dataPoints = new DataPoint[7];
-        Double lastweight = 0.0;
 
         for(DataSnapshot ds : dataSnapshot.getChildren()) {
             int index = Integer.parseInt(ds.getKey());
             Double data = Double.parseDouble(ds.getValue().toString());
 
-            dataPoints[index] = new DataPoint(index,data);
-            lastweight = Double.valueOf(index);
+            dataPoints[index-1] = new DataPoint(index,data);
+            myWeight = data;
         }
 
         for (int i = 0 ; i < dataPoints.length ; i++){
@@ -124,8 +111,9 @@ public class GraphActivity extends AppCompatActivity {
                 dataPoints[i] = new DataPoint(i, 0);
             }
         }
+
         showGraphData(dataPoints);
-        myWeight = lastweight;
+
         txtTodayWeight.setText(": "+myWeight+" กิโลกรัม");
         txtBMI.setText(calculatorBMI(Integer.parseInt(weight),Integer.parseInt(hieght)));
 

@@ -12,6 +12,7 @@ public class UserDetail {
     public static String [] selecNote = {"",""};
     public static String profileMode = "register";
     public static boolean isLogout;
+    public static ArrayList<EventDetail> arrNoti = new ArrayList<>();
     public static ArrayList<TotalWeekDetail> totalNote;
 
 }
