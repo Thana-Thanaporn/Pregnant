@@ -315,7 +315,7 @@ public class NoteMotherActivity extends AppCompatActivity {
         roundedImageView.setSquare(true);
 
         if (imgPath.equals("")){
-            roundedImageView.setBackgroundResource(R.drawable.kick);
+            roundedImageView.setBackgroundResource(R.drawable.noneimg);
         }else {
             StorageReference storageReference = FirebaseStorage.getInstance("gs://pregnantmother-e8d1f.appspot.com").getReference()
                     .child(imgPath);
