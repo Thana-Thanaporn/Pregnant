@@ -176,28 +176,31 @@
                 android:id="@+id/btnGraph"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:paddingRight="20dp"
-                android:layout_height="60dp"
-                android:src="@drawable/graphprofile"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_height="70dp"
+                android:src="@drawable/graph"
                 android:background="@null"
                 android:onClick="onClickProfileMenu"/>
             <ImageButton
                 android:id="@+id/btnAllNote"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:paddingRight="20dp"
-                android:layout_height="60dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_height="70dp"
                 android:background="@null"
-                android:src="@drawable/mobileprofile"
+                android:src="@drawable/mobile"
                 android:onClick="onClickProfileMenu"/>
             <ImageButton
                 android:id="@+id/btnTel"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:paddingRight="20dp"
-                android:layout_height="60dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_height="70dp"
                 android:background="@null"
-                android:src="@drawable/totalnoteprofile"
+                android:src="@drawable/totalnote"
                 android:onClick="onClickProfileMenu"/>
         </LinearLayout>
     </ScrollView>
@@ -205,10 +208,10 @@
     //menu
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:weightSum="5"
-        android:background="@color/colorMenu">
+        android:background="@color/colorPrimary">
         <ImageButton
             android:id="@+id/btnHome"
             android:layout_width="match_parent"
@@ -254,7 +257,7 @@
                 android:layout_height="18dp"
                 android:background="@drawable/circle"
                 android:gravity="center"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorDetail"
                 android:includeFontPadding="false" />
 
         </RelativeLayout>

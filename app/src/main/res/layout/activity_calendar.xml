@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bgcalen">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -48,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="55dp"
-        android:layout_marginBottom="60dp">
+        android:layout_marginBottom="55dp">
 
         //content
         <LinearLayout
@@ -103,7 +104,7 @@
                 app:compactCalendarTargetHeight="250dp"
                 app:compactCalendarTextSize="14sp"
                 app:compactCalendarBackgroundColor="#fff"
-                app:compactCalendarTextColor="#000"
+                app:compactCalendarTextColor="#313131"
                 app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorBtnOldActive"
                 app:compactCalendarCurrentDayBackgroundColor="@color/colorBtnOld"
                 app:compactCalendarMultiEventIndicatorColor="@color/colorBtnOld"
@@ -112,6 +113,8 @@
                 android:id="@+id/weekAndDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
                 android:text="ที่บันทึกไว้ "
                 android:textSize="20dp"
                 android:fontFamily="@fonts/kanit_medium"/>
@@ -121,7 +124,10 @@
                 android:divider="@null"
                 android:dividerHeight="10.0sp"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
 
         </LinearLayout>
     </ScrollView>
@@ -129,10 +135,10 @@
     //menu
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:weightSum="5"
-        android:background="@color/colorMenu">
+        android:background="@color/colorPrimary">
         <ImageButton
             android:id="@+id/btnHome"
             android:layout_width="match_parent"
@@ -178,7 +184,7 @@
                 android:layout_height="18dp"
                 android:background="@drawable/circle"
                 android:gravity="center"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorDetail"
                 android:includeFontPadding="false" />
 
         </RelativeLayout>

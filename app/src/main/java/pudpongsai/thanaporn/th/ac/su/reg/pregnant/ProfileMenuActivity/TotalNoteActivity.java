@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -56,7 +57,7 @@ import pudpongsai.thanaporn.th.ac.su.reg.pregnant.R;
 
 public class TotalNoteActivity extends AppCompatActivity {
     Context mcontext = TotalNoteActivity.this;
-    ListView listTotalNote;
+//    ListView listTotalNote;
     ImageView pictest;
 
     ArrayList<TotalWeekDetail> arrTotalNote = new ArrayList<>();
@@ -64,11 +65,35 @@ public class TotalNoteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_total_note);
-        listTotalNote = (ListView) findViewById(R.id.listTotalNote);
-        pictest = (ImageView) findViewById(R.id.pictest);
+//        listTotalNote = (ListView) findViewById(R.id.listTotalNote);
+//        pictest = (ImageView) findViewById(R.id.pictest);
 
     }
+
+
+    public void androidCheckBoxClicked(View view) {
+        // action for checkbox click
+        switch (view.getId()) {
+            case R.id.checkBox2:
+                //DO something when user check the box
+                break;
+            case R.id.checkBox3:
+                //DO something when user check the box
+                break;
+            case R.id.checkBox4:
+                //DO something when user check the box
+                break;
+            case R.id.checkBox5:
+                //DO something when user check the box
+                break;
+            case R.id.checkBox6:
+                //DO something when user check the box
+                break;
+        }
+    }
+
 
 
     public void printPdf(View view){

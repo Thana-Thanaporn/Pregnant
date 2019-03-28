@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:foreground="@drawable/box_radius_bg_popup"
     android:id="@+id/layoutMain"
+    android:background="@drawable/bganote"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.Toolbar

@@ -37,45 +37,104 @@
                 android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="หมายเลขโทรศัพท์ฉุกเฉิน"/>
+                android:text="สรุปบันทึก"/>
 
         </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:orientation="vertical">
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="30dp"-->
+        <!--android:layout_marginRight="30dp"-->
+        <!--android:orientation="vertical">-->
 
-        <ListView
-            android:layout_margin="10dp"
-            android:id="@+id/listTotalNote"
-            android:divider="@null"
-            android:dividerHeight="10.0sp"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"/>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/pictest"/>
-        <Button
-            android:layout_gravity="center"
-            android:id="@+id/btnPdf"
-            android:layout_width="130dp"
-            android:layout_height="50dp"
-            android:background="@drawable/box_radius_btn_actcive"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="40dp"
-            android:text="Pdf"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:onClick="printPdf"
-            android:textColor="@color/colorBtnFeel"/>
+        <!--<ListView-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:id="@+id/listTotalNote"-->
+            <!--android:divider="@null"-->
+            <!--android:dividerHeight="10.0sp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="300dp"/>-->
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/pictest"/>-->
+        <!---->
 
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
+
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:background="@drawable/box_radius_frame_pic"
+        android:layout_width="315dp"
+        android:layout_height="55dp"
+        android:onClick="androidCheckBoxClicked"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+        android:text="สัปดาห์ที่ 5" />
+
+    <CheckBox
+        android:id="@+id/checkBox3"
+        android:background="@drawable/box_radius_frame_pic"
+        android:layout_width="315dp"
+        android:layout_height="55dp"
+        android:onClick="androidCheckBoxClicked"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:text="สัปดาห์ที่ 6" />
+
+    <CheckBox
+        android:id="@+id/checkBox4"
+        android:background="@drawable/box_radius_frame_pic"
+        android:layout_width="315dp"
+        android:layout_height="55dp"
+        android:onClick="androidCheckBoxClicked"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:text="สัปดาห์ที่ 7" />
+
+    <CheckBox
+        android:id="@+id/checkBox5"
+        android:background="@drawable/box_radius_frame_pic"
+        android:layout_width="315dp"
+        android:layout_height="55dp"
+        android:onClick="androidCheckBoxClicked"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:text="สัปดาห์ที่ 8" />
+
+    <CheckBox
+        android:id="@+id/checkBox6"
+        android:background="@drawable/box_radius_frame_pic"
+        android:layout_width="315dp"
+        android:layout_height="55dp"
+        android:onClick="androidCheckBoxClicked"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:text="สัปดาห์ที่ 9" />
+
+
+    <Button
+        android:layout_gravity="center"
+        android:id="@+id/btnPdf"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:background="@drawable/box_radius_btn_actcive"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
+        android:text="Pdf"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:onClick="printPdf"
+        android:textColor="@color/colorBtnFeel"/>
 
 </LinearLayout>
 

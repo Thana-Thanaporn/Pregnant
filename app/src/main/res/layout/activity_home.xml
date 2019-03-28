@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:foreground="@drawable/box_radius_bg_popup"
     android:id="@+id/layoutMain"
     android:background="@drawable/bghome">
@@ -10,7 +10,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="60dp">
+        android:layout_marginBottom="55dp">
 
         //content
         <LinearLayout
@@ -24,12 +24,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp">
+
                 <TextView
+                    android:id="@+id/weekChild"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="พัฒนาการทารกในครรภ์"
+                    android:text="สัปดาห์ที่ "
                     android:textSize="20dp"
-                    android:fontFamily="@fonts/kanit_medium"/>
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/kanit_medium"/>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="พัฒนาการทารกในครรภ์"-->
+                    <!--android:textSize="20dp"-->
+                    <!--android:fontFamily="@fonts/kanit_medium"/>-->
 
                 <Button
                     android:id="@+id/btnSos"
@@ -40,6 +49,7 @@
                     android:fontFamily="@fonts/kanit_medium"
                     android:text="SOS"
                     android:textSize="20dp"
+                    android:layout_marginRight="10dp"
                     android:textColor="@color/colorBtnFeel"
                     android:layout_alignParentRight="true"
                     android:onClick="onClickSos"/>
@@ -57,46 +67,42 @@
                     android:layout_height="215dp"/>
             </android.support.v7.widget.CardView>
 
-            <TextView
-                android:id="@+id/weekChild"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="สัปดาห์ที่ "
-                android:textSize="20dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@fonts/kanit_medium"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/longChild"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ความยาว : "
-                    android:textSize="16dp"
-                    android:fontFamily="@font/kanit_regular"/>
 
-                <TextView
-                    android:id="@+id/weightChild"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="น้ำหนัก : "
-                    android:textSize="16dp"
-                    android:fontFamily="@font/kanit_regular"
-                    android:layout_alignParentRight="true"/>
-            </RelativeLayout>
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+                <!--<TextView-->
+                    <!--android:id="@+id/longChild"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="ความยาว : "-->
+                    <!--android:textSize="16dp"-->
+                    <!--android:fontFamily="@font/kanit_regular"/>-->
 
-            <TextView
-                android:layout_marginTop="5dp"
-                android:id="@+id/detailChild"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/kanit_light"
-                android:textSize="16dp" />
+                <!--<TextView-->
+                    <!--android:id="@+id/weightChild"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="น้ำหนัก : "-->
+                    <!--android:textSize="16dp"-->
+                    <!--android:fontFamily="@font/kanit_regular"-->
+                    <!--android:layout_alignParentRight="true"/>-->
+            <!--</RelativeLayout>-->
+
+            <!--<TextView-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:id="@+id/detailChild"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:fontFamily="@font/kanit_regular"-->
+                <!--android:textSize="16dp" />-->
 
             <TextView
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="อาหารที่จำเป็นในระยะนี้ "
@@ -104,20 +110,23 @@
                 android:fontFamily="@font/kanit_regular"/>
             <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
                 <LinearLayout
                     android:id="@+id/foodChild"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:orientation="horizontal"/>
             </HorizontalScrollView>
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="คำแนะนำที่เป็นประโยชน์ "
-                android:textSize="16dp"
-                android:fontFamily="@font/kanit_regular"/>
+            <!--<TextView-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="คำแนะนำที่เป็นประโยชน์ "-->
+                <!--android:textSize="16dp"-->
+                <!--android:fontFamily="@font/kanit_regular"/>-->
             <LinearLayout
                 android:id="@+id/recommendChild"
                 android:layout_width="match_parent"
@@ -127,29 +136,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ท่ากายบริหารขณะตั้งครรภ์ "
-                android:textSize="18dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/kanit_medium"/>
+                android:textSize="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/kanit_regular"/>
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="15dp">
                 <LinearLayout
                     android:id="@+id/exerciseChild"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
                     android:orientation="horizontal"/>
             </HorizontalScrollView>
         </LinearLayout>
     </ScrollView>
 
+
+
     //menu
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:weightSum="5"
-        android:background="@color/colorMenu">
+        android:elevation="2dp"
+        android:background="@color/colorPrimary">
         <ImageButton
             android:id="@+id/btnHome"
             android:layout_width="match_parent"
@@ -194,7 +210,7 @@
                 android:layout_height="18dp"
                 android:background="@drawable/circle"
                 android:gravity="center"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorDetail"
                 android:includeFontPadding="false" />
 
         </RelativeLayout>
