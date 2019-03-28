@@ -37,7 +37,8 @@ public class GraphActivity extends AppCompatActivity {
 
     TextView txtweekGraph,txtstandardWeight,txtTodayWeight,txtBeforeWeight,txtHieght,txtBMI;
     String weight, hieght;
-    Double myWeight , oldWeight;
+    Double myWeight = 0.0;
+    Double oldWeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

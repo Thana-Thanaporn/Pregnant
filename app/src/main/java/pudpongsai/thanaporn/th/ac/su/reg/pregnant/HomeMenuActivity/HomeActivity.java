@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.github.siyamed.shapeimageview.RoundedImageView;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -54,6 +55,8 @@ public class HomeActivity extends YouTubeBaseActivity implements YouTubePlayer.O
     LinearLayout foodChild,recommendChild,exerciseChild;
 
     TextView notiCount;
+
+    FloatingActionButton home_action, calen_action, note_action, noti_action, pro_action;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,13 +71,15 @@ public class HomeActivity extends YouTubeBaseActivity implements YouTubePlayer.O
         exerciseChild = (LinearLayout) findViewById(R.id.exerciseChild);
 
         weekChild = (TextView) findViewById(R.id.weekChild);
-        longChild = (TextView) findViewById(R.id.longChild);
-        weightChild = (TextView) findViewById(R.id.weightChild);
-        detailChild = (TextView) findViewById(R.id.detailChild);
+//        longChild = (TextView) findViewById(R.id.longChild);
+//        weightChild = (TextView) findViewById(R.id.weightChild);
+//        detailChild = (TextView) findViewById(R.id.detailChild);
         layoutMain = (RelativeLayout) findViewById(R.id.layoutMain);
         layoutMain.getForeground().setAlpha( 0);
 
         weekChild.setText("สัปดาห์ที่ " + UserDetail.weekPregnant);
+
+
 
 
         if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -96,9 +101,9 @@ public class HomeActivity extends YouTubeBaseActivity implements YouTubePlayer.O
                 YouTubePlayerView youTubePlayerView = findViewById(R.id.video);
                 youTubePlayerView.initialize(API_KEY, HomeActivity.this);
 
-                longChild.setText("ความยาว : " + map.get("long").toString() +" ซม. ");
-                weightChild.setText("น้ำหนัก : " + map.get("weight").toString() +" กรัม ");
-                detailChild.setText( map.get("detail").toString());
+//                longChild.setText("ความยาว : " + map.get("long").toString() +" ซม. ");
+//                weightChild.setText("น้ำหนัก : " + map.get("weight").toString() +" กรัม ");
+//                detailChild.setText( map.get("detail").toString());
             }
 
             @Override
@@ -145,32 +150,32 @@ public class HomeActivity extends YouTubeBaseActivity implements YouTubePlayer.O
                 System.out.println("The read failed: " + databaseError.getMessage());
             }
         });
-        referenceWeek.child("recommends").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-
-                for(DataSnapshot ds : snapshot.getChildren()) {
-                    int no = Integer.parseInt(ds.getKey())+1;
-                    TextView txtDetail = new TextView(mContext);
-                    RelativeLayout.LayoutParams txtDetailparams = new RelativeLayout.LayoutParams(
-                            RelativeLayout.LayoutParams.MATCH_PARENT,
-                            RelativeLayout.LayoutParams.WRAP_CONTENT
-                    );
-                    Typeface type = ResourcesCompat.getFont(mContext, R.font.kanit_light);
-                    txtDetail.setTypeface(type);
-                    txtDetail.setText(no + ". "+ds.getValue().toString());
-                    txtDetail.setLayoutParams(txtDetailparams);
-
-                    recommendChild.addView(txtDetail);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getMessage());
-            }
-        });
+//        referenceWeek.child("recommends").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot snapshot) {
+//
+//                for(DataSnapshot ds : snapshot.getChildren()) {
+//                    int no = Integer.parseInt(ds.getKey())+1;
+//                    TextView txtDetail = new TextView(mContext);
+//                    RelativeLayout.LayoutParams txtDetailparams = new RelativeLayout.LayoutParams(
+//                            RelativeLayout.LayoutParams.MATCH_PARENT,
+//                            RelativeLayout.LayoutParams.WRAP_CONTENT
+//                    );
+//                    Typeface type = ResourcesCompat.getFont(mContext, R.font.kanit_light);
+//                    txtDetail.setTypeface(type);
+//                    txtDetail.setText(no + ". "+ds.getValue().toString());
+//                    txtDetail.setLayoutParams(txtDetailparams);
+//
+//                    recommendChild.addView(txtDetail);
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                System.out.println("The read failed: " + databaseError.getMessage());
+//            }
+//        });
 
 
     }
@@ -368,6 +373,7 @@ public class HomeActivity extends YouTubeBaseActivity implements YouTubePlayer.O
                 break;
         }
     }
+
     public void onClickSos(View v){
         PregnantUitli.popupSOS(layoutMain,HomeActivity.this);
     }

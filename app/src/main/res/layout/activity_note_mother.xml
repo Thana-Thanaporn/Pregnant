@@ -31,7 +31,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="10dp"
             android:layout_height="match_parent">
 
             <TextView
@@ -52,48 +52,51 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginTop="55dp">
-        <android.support.v7.widget.CardView
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:id="@+id/yourcardid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="1dp"
-            app:cardCornerRadius="20dp"
-            android:layout_marginTop="10dp"
-            android:innerRadius="0dp"
-            android:shape="ring"
-            android:thicknessRatio="1.9">
-        <Spinner
-            android:id="@+id/spiSelectWeek"
-            android:layout_width="150dp"
-            android:background="@color/colorBtnWeek"
-            android:popupBackground="@null"
-            android:layout_height="wrap_content"/>
-        </android.support.v7.widget.CardView>
+
 
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="60dp">
+            android:layout_marginBottom="55dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
+                <android.support.v7.widget.CardView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="30dp"
+                    android:id="@+id/yourcardid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="1dp"
+                    app:cardCornerRadius="20dp"
+                    android:layout_marginTop="10dp"
+                    android:innerRadius="0dp"
+                    android:shape="ring"
+                    android:thicknessRatio="1.0">
+                    <Spinner
+                        android:id="@+id/spiSelectWeek"
+                        android:layout_width="150dp"
+                        android:background="@color/colorBtnWeek"
+                        android:popupBackground="@null"
+                        android:layout_height="wrap_content"/>
+                </android.support.v7.widget.CardView>
+
                 <RelativeLayout
                     android:id="@+id/boxPic"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
                 <TextView
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="20dp"
                     android:paddingTop="5dp"
                     android:paddingRight="30dp"
                     android:fontFamily="@font/kanit_medium"
                     android:paddingLeft="30dp"
                     android:paddingBottom="5dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/box_radius_show_week"
@@ -102,6 +105,7 @@
                     android:textColor="@color/colorBtnFeel"/>
                 <RelativeLayout
                     android:id="@+id/favPic"
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
 
@@ -121,10 +125,10 @@
     //menu
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:weightSum="5"
-        android:background="@color/colorMenu">
+        android:background="@color/colorPrimary">
         <ImageButton
             android:id="@+id/btnHome"
             android:layout_width="match_parent"
@@ -170,7 +174,7 @@
                 android:layout_height="18dp"
                 android:background="@drawable/circle"
                 android:gravity="center"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorDetail"
                 android:includeFontPadding="false" />
 
         </RelativeLayout>
