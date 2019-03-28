@@ -2,43 +2,30 @@ package pudpongsai.thanaporn.th.ac.su.reg.pregnant.ProfileMenuActivity;
 
 
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Environment;
-import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import org.json.JSONException;
@@ -49,14 +36,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.concurrent.ExecutionException;
+import java.util.Map;
 
-import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.TelDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.TotalWeekDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.UserDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.R;
@@ -67,6 +50,7 @@ public class TotalNoteActivity extends AppCompatActivity {
     ImageView pictest;
 
     ArrayList<TotalWeekDetail> arrTotalNote = new ArrayList<>();
+    ArrayList<Bitmap> arrPic = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,21 +59,65 @@ public class TotalNoteActivity extends AppCompatActivity {
         listTotalNote = (ListView) findViewById(R.id.listTotalNote);
         pictest = (ImageView) findViewById(R.id.pictest);
 
+        DatabaseReference reference1 = FirebaseDatabase.getInstance()
+                .getReferenceFromUrl("https://pregnantmother-e8d1f.firebaseio.com/users/"+ UserDetail.username+"/notes/"+4);
 
-        Glide.with(this)
-                .load("https://i.imgur.com/lU6i0qJ.jpg")
-                .asBitmap()
-                .into(new SimpleTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(final Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                        Bitmap bimtapImage=resource;
-                        pictest.setImageBitmap(bimtapImage);
-                    }
-                    @Override
-                    public void onLoadFailed(Exception e, Drawable errorDrawable) {
-                        super.onLoadFailed(e, errorDrawable);
-                    }
-                });
+        reference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for(DataSnapshot ds : snapshot.getChildren()) {
+                    Map<String, String> map = (Map) ds.getValue();
+                    String imgPath = map.get("pic1").toString();
+                    Log.d("imgPath pdf ", imgPath);
+
+                    StorageReference storageReference = FirebaseStorage.getInstance("gs://pregnantmother-e8d1f.appspot.com").getReference()
+                            .child(imgPath);
+
+                    Glide.with(TotalNoteActivity.this)
+                            .using(new FirebaseImageLoader())
+                            .load(storageReference)
+                            .asBitmap()
+                            .into(new SimpleTarget<Bitmap>() {
+                                @Override
+                                public void onResourceReady(final Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                                    Bitmap bimtapImage= resource;
+                                    arrPic.add(bimtapImage);
+                                    pictest.setImageBitmap(bimtapImage);
+                                }
+                                @Override
+                                public void onLoadFailed(Exception e, Drawable errorDrawable) {
+                                    super.onLoadFailed(e, errorDrawable);
+                                }
+                            });
+
+                }
+                Log.d("pdf ", String.valueOf(arrPic.size()));
+//                printPdf();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getMessage());
+            }
+        });
+
+
+
+
+//        Glide.with(this)
+//                .load("https://firebasestorage.googleapis.com/v0/b/pregnantmother-e8d1f.appspot.com/o/images%2Ftoth%2Fnotes%2Fweek_10day_2_a5ed353d-28d8-4533-ae79-72f33bc35377.jpg?alt=media&token=677ebe68-3fe5-4d0d-b44f-82d7123f4ebe")
+//                .asBitmap()
+//                .into(new SimpleTarget<Bitmap>() {
+//                    @Override
+//                    public void onResourceReady(final Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+//                        Bitmap bimtapImage=resource;
+//                        pictest.setImageBitmap(bimtapImage);
+//                    }
+//                    @Override
+//                    public void onLoadFailed(Exception e, Drawable errorDrawable) {
+//                        super.onLoadFailed(e, errorDrawable);
+//                    }
+//                });
 //        runOnUiThread(new Runnable() {
 //            @Override
 //            public void run() {
@@ -176,73 +204,76 @@ public class TotalNoteActivity extends AppCompatActivity {
 
     }
 
-    public void printPdf(View view){
+    public void printPdf(){
         String dest = Environment.getExternalStorageDirectory()
                 + "/HelloWorld.pdf";
         if (new File(dest).exists()) {
             new File(dest).delete();
         }
 
-        String text = "งงงงงงงงงงงงงงงงกกกดำทเทกาสเ่าส";
-        String[] showtext = new String[4];
-        int[] texthight = new int[4];
-        showtext[0] = "สัปดาห์ที่ 4 วันที่ 2";
-        showtext[1] = "สัปดาห์ที่ 4 วันที่ 2";
-        showtext[2] = "สัปดาห์ที่ 4 วันที่ 2";
-        showtext[3] = "สัปดาห์ที่ 4 วันที่ 2";
-        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setTextSize(24);
-        paint.setColor(Color.BLACK);
-        paint.setTextAlign(Paint.Align.LEFT);
-        Typeface type = ResourcesCompat.getFont(TotalNoteActivity.this, R.font.kanit_medium);
-        paint.setTypeface(type);
+//        String text = "งงงงงงงงงงงงงงงงกกกดำทเทกาสเ่าส";
+//        String[] showtext = new String[4];
+//        int[] texthight = new int[4];
+//        showtext[0] = "สัปดาห์ที่ 4 วันที่ 2";
+//        showtext[1] = "สัปดาห์ที่ 4 วันที่ 2";
+//        showtext[2] = "สัปดาห์ที่ 4 วันที่ 2";
+//        showtext[3] = "สัปดาห์ที่ 4 วันที่ 2";
+//        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+//        paint.setTextSize(24);
+//        paint.setColor(Color.BLACK);
+//        paint.setTextAlign(Paint.Align.LEFT);
+//        Typeface type = ResourcesCompat.getFont(TotalNoteActivity.this, R.font.kanit_medium);
+//        paint.setTypeface(type);
+//
+//        Paint paint1 = new Paint(Paint.ANTI_ALIAS_FLAG);
+//        paint1.setTextSize(20);
+//        paint1.setColor(Color.BLACK);
+//        paint1.setTextAlign(Paint.Align.LEFT);
+//        Typeface type1 = ResourcesCompat.getFont(TotalNoteActivity.this, R.font.kanit_light);
+//        paint.setTypeface(type1);
+//        float baseline = -paint.ascent(); // ascent() is negative
+//        int height =0;
+//        for (int i =0 ; i< showtext.length ; i++){
+//            Rect bounds = new Rect();
+//            paint1.getTextBounds(text, 0, text.length(), bounds);
+//            if (i == 0){
+//                texthight[0] = (int) (baseline);
+//            }else {
+//                texthight[i] = (int) (bounds.height() + texthight[i-1] +7.5f);
+//            }
+//
+//            height = texthight[i];
+//        }
 
-        Paint paint1 = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint1.setTextSize(20);
-        paint1.setColor(Color.BLACK);
-        paint1.setTextAlign(Paint.Align.LEFT);
-        Typeface type1 = ResourcesCompat.getFont(TotalNoteActivity.this, R.font.kanit_light);
-        paint.setTypeface(type1);
-        float baseline = -paint.ascent(); // ascent() is negative
-        int height =0;
-        for (int i =0 ; i< showtext.length ; i++){
-            Rect bounds = new Rect();
-            paint1.getTextBounds(text, 0, text.length(), bounds);
-            if (i == 0){
-                texthight[0] = (int) (baseline);
-            }else {
-                texthight[i] = (int) (bounds.height() + texthight[i-1] +7.5f);
-            }
-
-            height = texthight[i];
-        }
-
-//        int height = (int) (baseline + paint.descent() + 0.5f);
-        Bitmap image = Bitmap.createBitmap(500, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(image);
-        canvas.drawText(showtext[0], 0, texthight[0], paint);
-        canvas.drawText(showtext[1], 0, texthight[1], paint1);
-        canvas.drawText(showtext[2], 0, texthight[2], paint1);
-        canvas.drawText(showtext[3], 0, texthight[3], paint1);
-
-        pictest.setImageBitmap(image);
+////        int height = (int) (baseline + paint.descent() + 0.5f);
+//        Bitmap image = Bitmap.createBitmap(500, height, Bitmap.Config.ARGB_8888);
+//        Canvas canvas = new Canvas(image);
+//        canvas.drawText(showtext[0], 0, texthight[0], paint);
+//        canvas.drawText(showtext[1], 0, texthight[1], paint1);
+//        canvas.drawText(showtext[2], 0, texthight[2], paint1);
+//        canvas.drawText(showtext[3], 0, texthight[3], paint1);
+//
+//        pictest.setImageBitmap(image);
         try {
             Document document = new Document();
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(dest));
             writer.setPdfVersion(PdfWriter.VERSION_1_7);
 
-            ByteArrayOutputStream stream3 = new ByteArrayOutputStream();
-            image.compress(Bitmap.CompressFormat.PNG, 100, stream3);
-            Image maimg = Image.getInstance(stream3.toByteArray());
-            document.open();
-            document.add(maimg);
+
+
+            for (int i =0 ; i< arrPic.size() ;i++) {
+                ByteArrayOutputStream stream3 = new ByteArrayOutputStream();
+                arrPic.get(i).compress(Bitmap.CompressFormat.PNG, 100, stream3);
+                Image maimg = Image.getInstance(stream3.toByteArray());
+                document.add(maimg);
+            }
 //            Image image2 = Image.getInstance( new URL("https://i.imgur.com/lU6i0qJ.jpg"));
 //            document.add(image2);
 
 //            URL newurl = new URL("https://i.imgur.com/lU6i0qJ.jpg");
 //            Bitmap mIcon_val = BitmapFactory.decodeStream(newurl.openConnection() .getInputStream());
 //            pictest.setImageBitmap(mIcon_val);
-
+            document.open();
             document.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();

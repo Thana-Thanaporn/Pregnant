@@ -71,7 +71,6 @@
             android:text="Pdf"
             android:textSize="18dp"
             android:textStyle="bold"
-            android:onClick="printPdf"
             android:textColor="@color/colorBtnFeel"/>
 
 

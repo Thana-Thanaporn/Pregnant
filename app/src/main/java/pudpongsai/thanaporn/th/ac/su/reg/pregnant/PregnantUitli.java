@@ -1,17 +1,13 @@
 package pudpongsai.thanaporn.th.ac.su.reg.pregnant;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.ActivityCompat;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,32 +21,20 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
 
-import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Adapters.DateAdapter;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Adapters.NotiAdapter;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Adapters.SosAdapter;
-import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Adapters.TelAdapter;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.CalendarMenuActivity.AddDateActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.CalendarMenuActivity.CalendarActivity;
-import pudpongsai.thanaporn.th.ac.su.reg.pregnant.CalendarMenuActivity.EventActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.EventDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.TelDetail;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.UserDetail;
@@ -130,10 +114,10 @@ public class PregnantUitli {
             week +=1;
             day -= 7;
         }
-        UserDetail.weekPregnant = ""+week;
-        UserDetail.dayPregnant = ""+day;
-//        UserDetail.dayPregnant = ""+4;
-//        UserDetail.weekPregnant = ""+12;
+//        UserDetail.weekPregnant = ""+week;
+//        UserDetail.dayPregnant = ""+day;
+        UserDetail.dayPregnant = ""+3;
+        UserDetail.weekPregnant = ""+4;
 
     }
 

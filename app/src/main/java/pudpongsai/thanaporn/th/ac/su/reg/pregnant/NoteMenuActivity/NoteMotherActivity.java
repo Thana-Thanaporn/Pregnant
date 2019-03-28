@@ -3,12 +3,10 @@ package pudpongsai.thanaporn.th.ac.su.reg.pregnant.NoteMenuActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.Gravity;
@@ -26,7 +24,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.github.siyamed.shapeimageview.RoundedImageView;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,16 +32,15 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
+import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Adapters.weekAdapter;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.CalendarMenuActivity.CalendarActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Details.UserDetail;
-import pudpongsai.thanaporn.th.ac.su.reg.pregnant.Adapters.weekAdapter;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.HomeMenuActivity.HomeActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.NotiActivity;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.PregnantUitli;
@@ -313,6 +309,8 @@ public class NoteMotherActivity extends AppCompatActivity {
         roundedImageView.setBorderWidth(5);
         roundedImageView.setRadius(6);
         roundedImageView.setSquare(true);
+
+        Log.d("log image ",imgPath);
 
         if (imgPath.equals("")){
             roundedImageView.setBackgroundResource(R.drawable.kick);
