@@ -38,6 +38,9 @@
         <activity android:name=".ProfileMenuActivity.TotalNoteActivity" />
         <activity android:name=".CalendarMenuActivity.AddDateActivity" />
         <activity android:name=".CalendarMenuActivity.EventActivity"></activity>
+
+        <activity android:name=".ProfileMenuActivity.TabWeightBaby" />
+        <activity android:name=".ProfileMenuActivity.TabWeightMom" />
     </application>
 
 </manifest>
