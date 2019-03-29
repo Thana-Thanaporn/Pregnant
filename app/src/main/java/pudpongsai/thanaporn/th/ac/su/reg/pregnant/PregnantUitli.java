@@ -13,12 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -114,10 +116,9 @@ public class PregnantUitli {
             week +=1;
             day -= 7;
         }
-//        UserDetail.weekPregnant = ""+week;
-//        UserDetail.dayPregnant = ""+day;
-        UserDetail.dayPregnant = ""+3;
-        UserDetail.weekPregnant = ""+4;
+        UserDetail.weekPregnant = ""+week;
+        UserDetail.dayPregnant = ""+day;
+
 
     }
 
@@ -481,6 +482,66 @@ public class PregnantUitli {
             @Override
             public void onDismiss() {
                 layout.getForeground().setAlpha( 0);
+            }
+        });
+
+    }
+
+    public static void popupBabyWeight(final LinearLayout layout, Context context ){
+        int widthDevice = ((Activity)context).getWindowManager().getDefaultDisplay().getWidth();
+        int heightDevice = ((Activity)context).getWindowManager().getDefaultDisplay().getHeight();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            layout.getForeground().setAlpha( 220);
+        }
+
+        LayoutInflater weightInflater = (LayoutInflater)
+                context.getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = weightInflater.inflate(R.layout.popup_baby,null);
+
+        final Button btnSave = popupView.findViewById(R.id.btnSave);
+        final EditText edtbabyweight = popupView.findViewById(R.id.edtbabyweight);
+        final Spinner spiSelectWeek = popupView.findViewById(R.id.spiSelectWeek);
+
+        ArrayList<String> week = new ArrayList<String>();
+        for (int i = 8 ; i < 43 ; i ++){
+            week.add("สัปดาห์ที่ "+ i);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
+                android.R.layout.simple_dropdown_item_1line, week);
+        spiSelectWeek.setAdapter(adapter);
+
+        int width = (int) (widthDevice*0.8);
+        int height = (int) (heightDevice*0.35);
+
+        final PopupWindow popup = new PopupWindow(popupView,width,height,true);
+        popup.showAtLocation(popupView, Gravity.CENTER,0,0);
+        popup.setOutsideTouchable(true);
+        popup.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+
+            }
+        });
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String textWeek = spiSelectWeek.getSelectedItem().toString();
+                String weight = edtbabyweight.getText().toString();
+                if (weight.equals("")){
+                    edtbabyweight.setError("กรุณากรอกน้ำหนักทารกในครรภ์");
+
+
+                }else {
+                    DatabaseReference savebabyweightReference = FirebaseDatabase.getInstance()
+                            .getReferenceFromUrl("https://pregnantmother-e8d1f.firebaseio.com/users/"
+                                    + UserDetail.username + "/babyweight");
+                    savebabyweightReference.child(textWeek.substring(10)).setValue(weight);
+                    popup.dismiss();
+                    layout.getForeground().setAlpha( 0);
+                }
+
             }
         });
 

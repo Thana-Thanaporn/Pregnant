@@ -106,7 +106,7 @@ public class TabWeightMom extends Activity {
         showGraphData(dataPoints);
     }
 
-    private double calculatorBMI(double weight , double hieght) {
+    public double calculatorBMI(double weight , double hieght) {
         double calBMI = (weight / (Math.pow(hieght * 0.01, 2)));
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         return Double.parseDouble(decimalFormat.format(calBMI));
@@ -118,8 +118,10 @@ public class TabWeightMom extends Activity {
 
             if (i < 15)
                 points[i] = new DataPoint(i, myWeight + (i*(weightBMI[0])));
-            else
+            else if (i > 14 && i < 29)
                 points[i] = new DataPoint(i, points[i-1].getY()+(weightBMI[1]));
+            else
+                points[i] = new DataPoint(i, points[i-1].getY()+(weightBMI[2]));
         }
         return points;
     }
@@ -131,31 +133,23 @@ public class TabWeightMom extends Activity {
         Double BMI = calculatorBMI(myWeight, Double.parseDouble(hieght));
         Log.d("check BMI", String.valueOf(BMI));
         if (BMI < 18.5){
-            pointsHigh = GraphData(new double[]{0.23,0.58});
-            pointsLow = GraphData(new double[]{0.09,0.44});
-            pointsCenter = GraphData(new double[]{0.16,0.51});
+            pointsHigh = GraphData(new double[]{0.4,0.58,0.8});
+            pointsLow = GraphData(new double[]{0.1,0.44,0.4});
+            pointsCenter = GraphData(new double[]{0.2,0.51,0.6});
         }else if (BMI >= 18.5 && BMI <= 24.9){
-            pointsHigh = GraphData(new double[]{2.3,0.5});
-            pointsLow = GraphData(new double[]{0.09,0.42});
-            pointsCenter = GraphData(new double[]{1.6,0.44});
+            pointsHigh = GraphData(new double[]{0.3,0.5,0.8});
+            pointsLow = GraphData(new double[]{0.1,0.3,0.3});
+            pointsCenter = GraphData(new double[]{0.2,0.4,0.5});
         }else if (BMI >= 25 && BMI <= 29.9){
-            pointsHigh = GraphData(new double[]{1.4,0.33});
-            pointsLow = GraphData(new double[]{0.04,0.23});
-            pointsCenter = GraphData(new double[]{0.9,0.28});
+            pointsHigh = GraphData(new double[]{0.1,0.33,0.5});
+            pointsLow = GraphData(new double[]{0.02,0.23,0.3});
+            pointsCenter = GraphData(new double[]{0.06,0.28,0.4});
         }else {
-            pointsHigh = GraphData(new double[]{0.27,0.27});
-            pointsLow = GraphData(new double[]{0.17,0.17});
-            pointsCenter = GraphData(new double[]{0.22,0.22});
+            pointsHigh = GraphData(new double[]{0.1,0.27,0.5});
+            pointsLow = GraphData(new double[]{0.02,0.17,0.1});
+            pointsCenter = GraphData(new double[]{0.06,0.22,0.3});
         }
 
-        DataPoint[] points3 = new DataPoint[44];
-        for (int i = 0; i < points3.length; i++) {
-
-            if (i < 15)
-                points3[i] = new DataPoint(i, myWeight + (i*(0.16)));
-            else
-                points3[i] = new DataPoint(i, points3[i-1].getY()+(0.51));
-        }
 
         PointsGraphSeries<DataPoint> pointsGraphSeries = new PointsGraphSeries<>(dataPoints);
         pointsGraphSeries.setShape(PointsGraphSeries.Shape.POINT);

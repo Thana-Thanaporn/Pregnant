@@ -1,24 +1,34 @@
 package pudpongsai.thanaporn.th.ac.su.reg.pregnant.ProfileMenuActivity;
 
 import android.app.LocalActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import pudpongsai.thanaporn.th.ac.su.reg.pregnant.PregnantUitli;
 import pudpongsai.thanaporn.th.ac.su.reg.pregnant.R;
 
 public class GraphActivity extends AppCompatActivity {
 
     LocalActivityManager mLocalActivityManager;
+    public Context mcontext = GraphActivity.this;
+
+    LinearLayout layoutMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_graph);
+
+        layoutMain = (LinearLayout) findViewById(R.id.layoutMain);
+        layoutMain.getForeground().setAlpha( 0);
+
 
         mLocalActivityManager = new LocalActivityManager(this, false);
         mLocalActivityManager.dispatchCreate(savedInstanceState);
@@ -61,7 +71,9 @@ public class GraphActivity extends AppCompatActivity {
         mLocalActivityManager.dispatchResume();
     }
 
-
+    public  void onClickNewBabyWeight(View v) {
+        PregnantUitli.popupBabyWeight(layoutMain, mcontext);
+    }
 
 
     public void onClickBack(View v){

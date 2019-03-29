@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:foreground="@drawable/box_radius_bg_popup"
     android:id="@+id/layoutMain"
     tools:context=".ProfileMenuActivity.GraphActivity">
 
@@ -49,6 +50,7 @@
             <ImageButton
                 android:src="@drawable/plus"
                 android:layout_width="25dp"
+                android:onClick="onClickNewBabyWeight"
                 android:background="@color/colorPrimary"
                 android:layout_height="25dp"/>
 
