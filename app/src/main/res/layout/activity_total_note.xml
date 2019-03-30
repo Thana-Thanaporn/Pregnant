@@ -42,6 +42,7 @@
         </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,24 +53,24 @@
 
         <ListView
             android:id="@+id/listTotalNote"
-            android:divider="@null"
-            android:dividerHeight="10.0sp"
             android:layout_width="match_parent"
-            android:layout_height="500dp"/>
+            android:layout_height="450dp"
+            android:divider="@null"
+            android:dividerHeight="10.0sp" />
 
         <Button
-            android:layout_gravity="center"
             android:id="@+id/btnPdf"
             android:layout_width="130dp"
             android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/box_radius_btn_actcive"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="40dp"
-            android:text="Pdf"
-            android:textSize="18dp"
-            android:textStyle="bold"
             android:onClick="loadData"
-            android:textColor="@color/colorBtnFeel"/>
+            android:text="Pdf"
+            android:textColor="@color/colorBtnFeel"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

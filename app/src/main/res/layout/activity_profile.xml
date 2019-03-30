@@ -119,7 +119,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="ชื่อ - นามสกุล : "
+                            android:text="ชื่อจริง : "
                             android:textSize="16dp"
                             android:fontFamily="@font/kanit_regular"/>
                         <TextView

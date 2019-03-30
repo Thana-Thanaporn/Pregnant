@@ -117,7 +117,7 @@ public class TabWeightMom extends Activity {
         for (int i = 0; i < points.length; i++) {
 
             if (i < 15)
-                points[i] = new DataPoint(i, myWeight + (i*(weightBMI[0])));
+                points[i] = new DataPoint(i, oldWeight + (i*(weightBMI[0])));
             else if (i > 14 && i < 29)
                 points[i] = new DataPoint(i, points[i-1].getY()+(weightBMI[1]));
             else
@@ -130,7 +130,7 @@ public class TabWeightMom extends Activity {
 
     private void showGraphData(DataPoint [] dataPoints) {
         DataPoint[] pointsHigh,pointsLow,pointsCenter;
-        Double BMI = calculatorBMI(myWeight, Double.parseDouble(hieght));
+        Double BMI = calculatorBMI(oldWeight, Double.parseDouble(hieght));
         Log.d("check BMI", String.valueOf(BMI));
         if (BMI < 18.5){
             pointsHigh = GraphData(new double[]{0.4,0.58,0.8});

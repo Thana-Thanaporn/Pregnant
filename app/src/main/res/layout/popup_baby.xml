@@ -3,7 +3,7 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="30dp"
+    android:padding="50dp"
     android:layout_gravity="center"
     android:orientation="vertical"
     android:background="@drawable/box_radius">
@@ -14,10 +14,10 @@
         android:id="@+id/edtbabyweight"
         android:fontFamily="@font/kanit_regular"
         android:inputType="numberDecimal"
-        android:hint="น้ำหนักทารากในครรภ์ : "/>
+        android:hint="น้ำหนักทารกในครรภ์ : "/>
     <android.support.v7.widget.CardView
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="1dp"

@@ -513,7 +513,7 @@ public class PregnantUitli {
         spiSelectWeek.setAdapter(adapter);
 
         int width = (int) (widthDevice*0.8);
-        int height = (int) (heightDevice*0.35);
+        int height = (int) (heightDevice*0.45);
 
         final PopupWindow popup = new PopupWindow(popupView,width,height,true);
         popup.showAtLocation(popupView, Gravity.CENTER,0,0);
@@ -521,6 +521,8 @@ public class PregnantUitli {
         popup.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
+                popup.dismiss();
+                layout.getForeground().setAlpha( 0);
 
             }
         });

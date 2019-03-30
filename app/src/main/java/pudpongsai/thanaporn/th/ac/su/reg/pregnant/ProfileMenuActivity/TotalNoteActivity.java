@@ -11,10 +11,12 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -137,11 +139,9 @@ public class TotalNoteActivity extends AppCompatActivity {
                                     .into(new SimpleTarget<Bitmap>() {
                                         @Override
                                         public void onResourceReady(final Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                                            arrPic.add(createText(map,ds.getKey(),dataSnapshot.getKey()));
                                             arrPic.add(resource);
+                                            arrPic.add(createText(map,ds.getKey(),dataSnapshot.getKey()));
 
-
-//                                            pictest.setImageBitmap(bimtapImage);
 
                                             if (arrPic.size() == countselect*2)
                                                 printPdf();
@@ -215,7 +215,7 @@ public class TotalNoteActivity extends AppCompatActivity {
 
     public void printPdf(){
         String dest = Environment.getExternalStorageDirectory()
-                + "/HelloWorld.pdf";
+                + "/YourNote.pdf";
         if (new File(dest).exists()) {
             new File(dest).delete();
         }
@@ -244,6 +244,24 @@ public class TotalNoteActivity extends AppCompatActivity {
             }
 
             document.close();
+            Toast.makeText(this,"This is a Toast", Toast.LENGTH_LONG).show();
+            
+
+            Thread thread = new Thread(){
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(Toast.LENGTH_LONG); // As I am using LENGTH_LONG in Toast
+                        finish();
+                        startActivity(getIntent());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+
+            thread.start();
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (DocumentException e) {

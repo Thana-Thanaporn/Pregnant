@@ -45,7 +45,7 @@ public class TabWeightBaby extends Activity {
                 String Last = "";
                 for(DataSnapshot ds : snapshot.getChildren()) {
                     Last = ds.getValue().toString();
-                    int index = Integer.parseInt(ds.getKey());
+                    int index = Integer.parseInt(ds.getKey().trim());
                     points[index-8] = new DataPoint(index, Double.parseDouble(ds.getValue().toString()));
 
                 }
