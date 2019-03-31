@@ -51,10 +51,10 @@ public class GraphActivity extends AppCompatActivity {
         tabHost.addTab(tabSpec2);
 
         TextView x = (TextView) tabHost.getTabWidget().getChildAt(0).findViewById(android.R.id.title);
-        x.setTextSize(18);
+        x.setTextSize(16);
 
         TextView x1 = (TextView) tabHost.getTabWidget().getChildAt(1).findViewById(android.R.id.title);
-        x1.setTextSize(18);
+        x1.setTextSize(16);
 
     }
 
