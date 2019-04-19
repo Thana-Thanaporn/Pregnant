@@ -46,6 +46,7 @@ public class OldPregnantActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_old_pregnant);
         oldRange = "";
         edtWeight = (EditText)findViewById(R.id.edtWeight);

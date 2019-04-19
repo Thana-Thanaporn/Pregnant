@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
@@ -16,12 +16,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginMenuActivity.LoginActivity">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".LoginMenuActivity.LoginActivity">
+
         </activity>
         <activity android:name=".LoginMenuActivity.RegisterActivity" />
         <activity android:name=".LoginMenuActivity.OldPregnantActivity" />
@@ -37,8 +40,7 @@
         <activity android:name=".ProfileMenuActivity.TelActivity" />
         <activity android:name=".ProfileMenuActivity.TotalNoteActivity" />
         <activity android:name=".CalendarMenuActivity.AddDateActivity" />
-        <activity android:name=".CalendarMenuActivity.EventActivity"></activity>
-
+        <activity android:name=".CalendarMenuActivity.EventActivity" />
         <activity android:name=".ProfileMenuActivity.TabWeightBaby" />
         <activity android:name=".ProfileMenuActivity.TabWeightMom" />
     </application>
